@@ -32,7 +32,7 @@ export const navGroups = [
 		mobileLabel: 'PAGES',
 		links: [
 			{ label: 'About Us', mobileLabel: 'ABOUT US', href: '/about' },
-			{ label: 'BMI Calculator', mobileLabel: 'BMI CACULATOR', href: '/bmi' },
+			{ label: 'BMI Calculator', mobileLabel: 'BMI CALCULATOR', href: '/bmi' },
 			{ label: 'Schedule', mobileLabel: 'SCHEDULE', href: '/schedule' },
 			{ label: 'Pricing Table', mobileLabel: 'PRICING TABLE', href: '/pricing' },
 			{ label: 'Gallery', mobileLabel: 'GALLERY', href: '/gallery' },
