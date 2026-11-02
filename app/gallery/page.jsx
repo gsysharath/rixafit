@@ -1,12 +1,14 @@
+import { pageMetadata } from '../../lib/seo';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
 import GalleryLightbox from '../../components/GalleryLightbox';
 
-export const metadata = {
-	title: 'Gallery',
-	description: "Take a look inside RIXA FIT Mahabubnagar - our reception, strength zone, cardio area, boxing corner and member lounge.",
-	alternates: { canonical: '/gallery' },
-};
+export const metadata = pageMetadata({
+	title: 'Gym Photos - Inside RIXA FIT Mahabubnagar',
+	description: 'See inside RIXA FIT Mahabubnagar - our reception, strength zone, cardio area, boxing corner and member lounge at Padmavathi Colony.',
+	path: '/gallery',
+	keywords: ['gym photos', 'gym interior Mahabubnagar'],
+});
 
 export default function GalleryPage() {
 	return (

@@ -1,11 +1,14 @@
+import { pageMetadata } from '../../lib/seo';
+import { site } from '../../data/site';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
 
-export const metadata = {
-	title: 'Class Schedule',
-	description: "Weekly class timetable at RIXA FIT Mahabubnagar - boxing, cardio, HIIT, strength and more. Open Mon-Sat 5-10 AM & 5-10 PM.",
-	alternates: { canonical: '/schedule' },
-};
+export const metadata = pageMetadata({
+	title: 'Gym Timings & Class Schedule - Mahabubnagar',
+	description: `RIXA FIT gym timings: ${site.hours.weekdays.label} ${site.hours.weekdays.value}, ${site.hours.sunday.label} ${site.hours.sunday.value}. See the weekly class timetable.`,
+	path: '/schedule',
+	keywords: ['gym timings Mahabubnagar', 'gym class timetable', 'gym open Sunday'],
+});
 
 export default function SchedulePage() {
 	return (

@@ -1,13 +1,15 @@
+import { pageMetadata } from '../../lib/seo';
 import { trainers } from '../../data/trainers';
 import { videoLink } from '../../data/site';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
 
-export const metadata = {
-	title: 'About Us',
-	description: "Learn about RIXA FIT - Mahabubnagar's premier fitness studio with modern equipment, expert coaches and a supportive training community.",
-	alternates: { canonical: '/about' },
-};
+export const metadata = pageMetadata({
+	title: 'About Us - Gym in Padmavathi Colony, Mahabubnagar',
+	description: "Meet RIXA FIT, Mahabubnagar's premier fitness studio in Padmavathi Colony - modern equipment, expert coaches and a community that moves you forward.",
+	path: '/about',
+	keywords: ['about RIXA FIT', 'fitness studio Mahabubnagar'],
+});
 
 export default function AboutPage() {
 	return (

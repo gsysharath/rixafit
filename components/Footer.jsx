@@ -112,7 +112,6 @@ export default function Footer() {
 							<div className="flex-1 border-t-[4px] border-[#D4D4D4] border-opacity-50"></div>
 							<div className="flex-1 border-t-[3px] border-[#D4D4D4] border-opacity-50"></div>
 							<div className="flex-1 border-t-[1px] border-[#D4D4D4] border-opacity-50"></div>
-							<div className="font-teko text-[28px] font-semibold">{site.name}</div>
 						</a>
 						<div className="pt-[30px]"></div>
 						<div className="">

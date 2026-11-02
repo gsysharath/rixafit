@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../lib/seo';
 import PageBanner from '../../components/PageBanner';
 
 function SectionHeading({ eyebrow, title }) {
@@ -119,11 +120,11 @@ const guidelines = [
 	{ emoji: '🙌', title: 'Respect Others -', children: 'Share equipment, minimize mobile use, and maintain discipline.' },
 ];
 
-export const metadata = {
-	title: 'Terms & Conditions',
-	description: "RIXA FIT membership terms, conditions and member guidelines.",
-	alternates: { canonical: '/terms' },
-};
+export const metadata = pageMetadata({
+	title: 'Membership Terms & Conditions',
+	description: 'RIXA FIT membership terms - fees, timings, health and safety rules and member guidelines for our gym in Mahabubnagar.',
+	path: '/terms',
+});
 
 export default function TermsPage() {
 	return (

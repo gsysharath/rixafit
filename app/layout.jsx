@@ -5,6 +5,7 @@ import OffcanvasMenu from '../components/OffcanvasMenu';
 import TemplateScripts from '../components/TemplateScripts';
 import { site } from '../data/site';
 import { priceRange } from '../data/plans';
+import { DEFAULT_OG_IMAGE, LOCAL_KEYWORDS, jsonLdScript } from '../lib/seo';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../styles/odometer-theme-minimal.css';
 import 'tiny-slider/dist/tiny-slider.css';
@@ -14,6 +15,14 @@ const teko = Teko({ subsets: ['latin'], variable: '--font-teko', display: 'swap'
 const oswald = Oswald({ subsets: ['latin'], variable: '--font-oswald', display: 'swap' });
 const vazirmatn = Vazirmatn({ subsets: ['latin'], variable: '--font-vazirmatn', display: 'swap' });
 
+// Optional search-console ownership tokens (Settings → Ownership verification → HTML tag).
+const verification = {
+	...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : {}),
+	...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ? { other: { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } } : {}),
+};
+
+// Site-wide defaults; every page overrides title, description, canonical and social tags
+// through pageMetadata() in lib/seo.js.
 export const metadata = {
 	metadataBase: new URL(site.url),
 	title: {
@@ -22,25 +31,37 @@ export const metadata = {
 	},
 	description: site.description,
 	applicationName: site.name,
-	keywords: ['gym in Mahabubnagar', 'fitness studio', 'personal training', 'kickboxing', 'HIIT', 'strength training', 'RIXA FIT'],
-	alternates: { canonical: '/' },
+	authors: [{ name: site.name, url: site.url }],
+	creator: site.name,
+	publisher: site.name,
+	category: 'fitness',
+	keywords: LOCAL_KEYWORDS,
 	openGraph: {
 		type: 'website',
 		locale: 'en_IN',
 		siteName: site.name,
-		title: `${site.name} - ${site.tagline}`,
+		title: `${site.name} | Best Gym & Fitness Studio in Mahabubnagar`,
 		description: site.description,
 		url: '/',
-		images: [{ url: '/images/og-image.jpg', width: 1200, height: 630, alt: `${site.name} - ${site.tagline}` }],
+		images: [DEFAULT_OG_IMAGE],
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: `${site.name} - ${site.tagline}`,
+		title: `${site.name} | Best Gym & Fitness Studio in Mahabubnagar`,
 		description: site.description,
-		images: ['/images/og-image.jpg'],
+		images: [DEFAULT_OG_IMAGE.url],
 	},
-	robots: { index: true, follow: true },
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 },
+	},
 	formatDetection: { telephone: true, email: true, address: true },
+	other: {
+		'geo.region': 'IN-TG',
+		'geo.placename': site.address.city,
+	},
+	...(Object.keys(verification).length ? { verification } : {}),
 };
 
 export const viewport = {
@@ -49,17 +70,23 @@ export const viewport = {
 	themeColor: '#01010F',
 };
 
+// Local business data search engines use for "gym near me" style results and the map pack.
 const localBusiness = {
 	'@context': 'https://schema.org',
-	'@type': 'HealthClub',
+	'@type': ['HealthClub', 'ExerciseGym'],
+	'@id': `${site.url}/#gym`,
 	name: site.name,
+	alternateName: site.legalName,
+	slogan: site.tagline,
 	description: site.description,
 	url: site.url,
 	telephone: site.phone,
-	priceRange,
 	email: site.email,
-	image: `${site.url}/images/og-image.jpg`,
+	priceRange,
+	currenciesAccepted: 'INR',
+	image: [`${site.url}/images/og-image.jpg`, `${site.url}/gym/gym-floor-strength-zone.webp`, `${site.url}/gym/reception-desk-1.webp`],
 	logo: `${site.url}/images/logo-full.png`,
+	hasMap: site.mapUrl,
 	address: {
 		'@type': 'PostalAddress',
 		streetAddress: site.address.street,
@@ -68,6 +95,16 @@ const localBusiness = {
 		postalCode: site.address.postalCode,
 		addressCountry: site.address.country,
 	},
+	areaServed: [
+		{ '@type': 'City', name: 'Mahabubnagar' },
+		{ '@type': 'AdministrativeArea', name: 'Telangana' },
+	],
+	contactPoint: [site.phone, site.altPhone].map((telephone) => ({
+		'@type': 'ContactPoint',
+		telephone,
+		contactType: 'customer service',
+		areaServed: 'IN',
+	})),
 	openingHoursSpecification: site.openingHours.map((h) => ({
 		'@type': 'OpeningHoursSpecification',
 		dayOfWeek: h.days,
@@ -77,9 +114,19 @@ const localBusiness = {
 	sameAs: [site.instagram],
 };
 
+const website = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	'@id': `${site.url}/#website`,
+	name: site.name,
+	url: site.url,
+	inLanguage: 'en-IN',
+	publisher: { '@id': `${site.url}/#gym` },
+};
+
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en" className={`scroll-smooth ${teko.variable} ${oswald.variable} ${vazirmatn.variable}`}>
+		<html lang="en-IN" className={`scroll-smooth ${teko.variable} ${oswald.variable} ${vazirmatn.variable}`}>
 			<body className="bg-[#01010F] text-[#E7E7E7] text-[18px] leading-[1.5] font-vazirmatn">
 				<a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-[10px] focus:left-[10px] focus:z-[100] focus:bg-[#971A1E] focus:text-white focus:px-[16px] focus:py-[8px]">
 					Skip to content
@@ -89,10 +136,8 @@ export default function RootLayout({ children }) {
 				<Footer />
 				<OffcanvasMenu />
 				<TemplateScripts />
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness).replace(/</g, '\\u003c') }}
-				/>
+				<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(localBusiness)} />
+				<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(website)} />
 			</body>
 		</html>
 	);

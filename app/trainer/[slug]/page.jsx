@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../../lib/seo';
 import { notFound } from 'next/navigation';
 import { site, videoLink, whatsappLink } from '../../../data/site';
 import { getTrainer, trainers } from '../../../data/trainers';
@@ -14,12 +15,11 @@ export async function generateMetadata({ params }) {
 	const { slug } = await params;
 	const trainer = getTrainer(slug);
 	if (!trainer) return {};
-	return {
+	return pageMetadata({
 		title: `${trainer.name} - ${trainer.role}`,
-		description: trainer.bio,
-		alternates: { canonical: `/trainer/${trainer.slug}` },
-		openGraph: { title: `${trainer.name} | RIXA FIT`, description: trainer.bio, images: [trainer.image] },
-	};
+		description: `${trainer.bio} Train with ${trainer.name} at RIXA FIT, Mahabubnagar.`,
+		path: `/trainer/${trainer.slug}`,
+	});
 }
 
 export default async function TrainerDetailsPage({ params }) {

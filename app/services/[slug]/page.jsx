@@ -1,3 +1,4 @@
+import { jsonLdScript, pageMetadata, serviceJsonLd } from '../../../lib/seo';
 import { notFound } from 'next/navigation';
 import { trainers } from '../../../data/trainers';
 import { classes } from '../../../data/classes';
@@ -15,12 +16,12 @@ export async function generateMetadata({ params }) {
 	const { slug } = await params;
 	const service = getService(slug);
 	if (!service) return {};
-	return {
-		title: service.name,
-		description: service.description,
-		alternates: { canonical: `/services/${service.slug}` },
-		openGraph: { title: `${service.name} | RIXA FIT`, description: service.summary, images: [service.image] },
-	};
+	return pageMetadata({
+		title: `${service.name} in Mahabubnagar`,
+		description: `${service.description.split('. ')[0]}. ${service.name} at RIXA FIT gym, Padmavathi Colony, Mahabubnagar.`,
+		path: `/services/${service.slug}`,
+		keywords: [`${service.name.toLowerCase()} Mahabubnagar`],
+	});
 }
 
 export default async function ServiceDetailsPage({ params }) {
@@ -31,6 +32,7 @@ export default async function ServiceDetailsPage({ params }) {
 	return (
 		<div className="bg-[#01010F] text-[#E7E7E7]">
 			<PageBanner title={service.name} gradient={false} crumbs={[{ label: 'Services', href: '/services' }, { label: service.name }]} />
+			<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(serviceJsonLd({ name: service.name, description: service.description, path: `/services/${service.slug}`, serviceType: service.name }))} />
 		<div className="py-[150px]">
 			<div className="max-w-[1320px] mx-auto px-[15px]">
 				<div className="flex">

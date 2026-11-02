@@ -2,10 +2,19 @@ import HomeBmiForm from '../components/forms/HomeBmiForm';
 import NewsletterForm from '../components/forms/NewsletterForm';
 import PlanCard from '../components/cards/PlanCard';
 import { classes } from '../data/classes';
-import { plans } from '../data/plans';
+import { formatPrice, plans } from '../data/plans';
 import { posts } from '../data/posts';
 import { videoLink } from '../data/site';
 import { trainers } from '../data/trainers';
+import { pageMetadata } from '../lib/seo';
+
+export const metadata = pageMetadata({
+	title: 'RIXA FIT | Best Gym & Fitness Studio in Mahabubnagar',
+	absoluteTitle: true,
+	description: `RIXA FIT is a modern gym in Padmavathi Colony, Mahabubnagar - strength, cardio, kickboxing and HIIT classes, expert trainers and memberships from ${formatPrice(Math.min(...plans.map((p) => p.price)))}.`,
+	path: '/',
+	keywords: ['gym Mahabubnagar', 'fitness gym Telangana', 'personal training Mahabubnagar'],
+});
 
 const homePlans = ['fit-30', 'fit-365'].map((slug) => plans.find((p) => p.slug === slug));
 

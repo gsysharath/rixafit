@@ -108,8 +108,7 @@ export default function Header() {
 		<div className="flex justify-between items-center h-[90px] font-teko">
 			<div className="">
 				<a className="flex items-center gap-[5px]" href="/" aria-label={`${site.name} home`}>
-					<LogoMark className="w-[52px] h-[53px]" />
-					<div className="text-[28px] font-semibold">{site.name}</div>
+					<LogoMark className="w-[60px] h-[61px]" />
 				</a>
 			</div>
 			<div className="hidden xl:block">

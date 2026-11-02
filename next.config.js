@@ -2,6 +2,11 @@
 
 const isProd = process.env.NODE_ENV === 'production';
 
+// Canonical URLs, the sitemap and social tags are baked in at build time from the site URL.
+if (isProd && !process.env.NEXT_PUBLIC_SITE_URL && !process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+	console.warn('\n⚠ NEXT_PUBLIC_SITE_URL is not set: canonical URLs, sitemap.xml and social tags will point to http://localhost:3000.\n  Set it to the live domain (e.g. https://your-domain.com) before building for production.\n');
+}
+
 const csp = [
 	"default-src 'self'",
 	// Next.js injects small inline bootstrap scripts; dev mode also needs eval for fast refresh.

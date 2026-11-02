@@ -1,3 +1,4 @@
+import { jsonLdScript, pageMetadata, serviceJsonLd } from '../../../lib/seo';
 import { notFound } from 'next/navigation';
 import NewsletterForm from '../../../components/forms/NewsletterForm';
 import BookingForm from '../../../components/forms/BookingForm';
@@ -14,12 +15,12 @@ export async function generateMetadata({ params }) {
 	const { slug } = await params;
 	const item = getClass(slug);
 	if (!item) return {};
-	return {
-		title: `${item.name} Class`,
-		description: item.intro,
-		alternates: { canonical: `/classes/${item.slug}` },
-		openGraph: { title: `${item.name} Class | RIXA FIT`, description: item.intro, images: [item.image] },
-	};
+	return pageMetadata({
+		title: `${item.name} Classes in Mahabubnagar`,
+		description: `${item.intro} ${item.schedule}, ${item.duration}. Book your class at RIXA FIT, Mahabubnagar.`,
+		path: `/classes/${item.slug}`,
+		keywords: [`${item.name.toLowerCase()} classes Mahabubnagar`, `${item.name.toLowerCase()} near me`],
+	});
 }
 
 export default async function ClassDetailsPage({ params }) {
@@ -30,6 +31,7 @@ export default async function ClassDetailsPage({ params }) {
 	return (
 		<div className="bg-[#01010F] text-[#E7E7E7]">
 			<PageBanner title={item.name} gradient={false} crumbs={[{ label: 'Classes', href: '/classes' }, { label: item.name }]} />
+			<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(serviceJsonLd({ name: `${item.name} Classes`, description: item.description, path: `/classes/${item.slug}`, serviceType: 'Group fitness class' }))} />
 		<div className="pt-[150px]">
 			<div className="max-w-[1320px] mx-auto px-[15px]">
 				<div className="grid grid-cols-1 xl:grid-cols-3 xl:gap-[30px]">

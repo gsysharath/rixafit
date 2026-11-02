@@ -1,9 +1,12 @@
 import { Fragment } from 'react';
+import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo';
 
-export default function PageBanner({ title, gradient = false, crumbs }) {
+// Pages that render their own <h1> (e.g. blog articles) pass titleAs="div" to keep a single h1.
+export default function PageBanner({ title, gradient = false, crumbs, titleAs: TitleTag = 'h1' }) {
 	const trail = crumbs || [{ label: title }];
 	return (
 		<div className="relative z-[49] mt-[-130px]">
+			<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(breadcrumbJsonLd(trail))} />
 			<div className="absolute top-0 right-0 bottom-0 left-0">
 				<img className="absolute top-0 left-0 w-full h-full object-cover object-fit" src="/images/about/pagetitle.webp" alt="" fetchPriority="high" />
 				<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] bg-opacity-70"></div>
@@ -20,7 +23,7 @@ export default function PageBanner({ title, gradient = false, crumbs }) {
 									<div className="flex-1 border-t-[4px] border-[#D4D4D4] border-opacity-50"></div>
 									<div className="flex-1 border-t-[7px] border-[#D4D4D4] border-opacity-50"></div>
 									<div className="flex-1 border-t-[10px] border-[#D4D4D4] border-opacity-50"></div>
-									<h1 className="">{title}</h1>
+									<TitleTag className="">{title}</TitleTag>
 									<div className="flex-1 border-t-[10px] border-[#D4D4D4] border-opacity-50"></div>
 									<div className="flex-1 border-t-[7px] border-[#D4D4D4] border-opacity-50"></div>
 									<div className="flex-1 border-t-[4px] border-[#D4D4D4] border-opacity-50"></div>

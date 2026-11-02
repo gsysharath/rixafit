@@ -1,12 +1,14 @@
+import { pageMetadata } from '../../lib/seo';
 import { trainers } from '../../data/trainers';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
 
-export const metadata = {
-	title: 'Our Trainers',
-	description: 'Meet the coaches and fitness experts at RIXA FIT Mahabubnagar - strength, HIIT, nutrition and mobility specialists.',
-	alternates: { canonical: '/trainer' },
-};
+export const metadata = pageMetadata({
+	title: 'Personal Trainers & Fitness Coaches in Mahabubnagar',
+	description: 'Meet the RIXA FIT coaching team in Mahabubnagar - strength, HIIT, nutrition and mobility specialists who build programmes around your goals.',
+	path: '/trainer',
+	keywords: ['personal trainer Mahabubnagar', 'fitness coach', 'gym trainer'],
+});
 
 export default function TrainerPage() {
 	return (

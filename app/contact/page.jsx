@@ -1,12 +1,14 @@
+import { pageMetadata } from '../../lib/seo';
 import PageBanner from '../../components/PageBanner';
 import ContactForm from '../../components/forms/ContactForm';
 import { site } from '../../data/site';
 
-export const metadata = {
-	title: 'Contact Us',
-	description: `Contact ${site.name} in Mahabubnagar. Call ${site.phoneDisplay} or ${site.altPhoneDisplay}, WhatsApp us or send an enquiry about memberships, classes and personal training.`,
-	alternates: { canonical: '/contact' },
-};
+export const metadata = pageMetadata({
+	title: 'Contact Us - Gym in Padmavathi Colony, Mahabubnagar',
+	description: `Visit RIXA FIT at ${site.address.line1}, ${site.address.line2}. Call ${site.phoneDisplay} or WhatsApp us about memberships, classes and personal training.`,
+	path: '/contact',
+	keywords: ['RIXA FIT contact', 'gym phone number Mahabubnagar', 'gym address Mahabubnagar'],
+});
 
 export default function ContactPage() {
 	return (

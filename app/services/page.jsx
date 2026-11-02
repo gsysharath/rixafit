@@ -1,12 +1,14 @@
+import { pageMetadata } from '../../lib/seo';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
 import { services } from '../../data/services';
 
-export const metadata = {
-	title: 'Our Services',
-	description: 'Personal training, group fitness classes, strength training, nutrition guidance, calisthenics and fitness assessments at RIXA FIT Mahabubnagar.',
-	alternates: { canonical: '/services' },
-};
+export const metadata = pageMetadata({
+	title: 'Gym Services in Mahabubnagar - Training & Nutrition',
+	description: 'Personal training, group fitness classes, strength training, nutrition guidance, calisthenics and fitness assessments at RIXA FIT gym, Mahabubnagar.',
+	path: '/services',
+	keywords: ['personal trainer Mahabubnagar', 'strength training', 'nutrition guidance'],
+});
 
 export default function ServicesPage() {
 	return (

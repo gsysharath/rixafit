@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../lib/seo';
 import { posts } from '../../data/posts';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
@@ -5,11 +6,12 @@ import { SearchFilterItem, SearchSummary } from '../../components/BlogSearch';
 
 const postSearchText = (p) => `${p.title} ${p.excerpt}`;
 
-export const metadata = {
-	title: 'Blog',
-	description: 'Workout tips, nutrition advice and motivation from the RIXA FIT coaches in Mahabubnagar.',
-	alternates: { canonical: '/blog' },
-};
+export const metadata = pageMetadata({
+	title: 'Fitness Blog - Workout & Nutrition Tips',
+	description: 'Workout tips, nutrition advice and motivation from the RIXA FIT coaches in Mahabubnagar to help you train smarter, eat better and stay consistent.',
+	path: '/blog',
+	keywords: ['fitness tips', 'workout nutrition', 'gym blog'],
+});
 
 export default function BlogPage() {
 	return (

@@ -88,6 +88,28 @@ public/images, gym/  Optimised WebP images (served locally, cached 30 days)
 styles/              Vendored third-party CSS
 ```
 
+## SEO
+
+Built in (no action needed):
+
+- Every page gets a unique title, description, canonical URL, Open Graph and Twitter card via `pageMetadata()` in `lib/seo.js`, written around local searches such as "gym in Mahabubnagar" and "gym membership fees Mahabubnagar".
+- `sitemap.xml` (all pages, classes, services, trainers and posts - new data entries are added automatically) and `robots.txt` pointing to it.
+- Structured data: `HealthClub`/`ExerciseGym` local business (address, both phones, hours, price range, map, Instagram), `WebSite`, `BreadcrumbList` on every inner page, `Service` on class and service pages, `OfferCatalog` for membership plans, `BlogPosting` for articles.
+- Web app manifest and icons, `en-IN` language, share image `public/images/og-image.jpg`.
+
+Set `NEXT_PUBLIC_SITE_URL` to the live domain - canonical URLs and the sitemap are generated at build time (on Vercel the production domain is used automatically).
+
+### Getting found on Google ("gym near me", "gym in Mahabubnagar")
+
+Local gym searches are decided mostly by the Google map listing, so these steps matter as much as the website:
+
+1. **Google Business Profile** (<https://business.google.com>) - claim or create "RIXA FIT", category *Gym*, same address and phone numbers as the website, add the website link, hours, photos and the membership prices. Verify it (postcard/phone/video).
+2. **Google Search Console** (<https://search.google.com/search-console>) - add the domain, verify with the HTML tag method (put the token in `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` and redeploy), then submit `https://your-domain/sitemap.xml` and request indexing for the home page.
+3. **Bing Webmaster Tools** (<https://www.bing.com/webmasters>) - import from Search Console or use `NEXT_PUBLIC_BING_SITE_VERIFICATION`.
+4. **Reviews** - ask members for Google reviews and reply to them; review count and rating strongly influence map rankings.
+5. **Consistent details everywhere** - use the exact same name, address and phone on Instagram, Justdial, Sulekha and other listings, and link them to the website.
+6. **Real content** - replace placeholder trainer profiles and testimonials with genuine ones, and keep adding blog posts about training in Mahabubnagar.
+
 ## Production notes
 
 - Old template URLs (`/class-details`, `/about.html`, ...) permanently redirect to the new routes.

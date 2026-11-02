@@ -1,13 +1,15 @@
+import { pageMetadata } from '../../lib/seo';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
 import ClassCard from '../../components/cards/ClassCard';
 import { classes } from '../../data/classes';
 
-export const metadata = {
-	title: 'Classes',
-	description: 'Explore group fitness classes at RIXA FIT Mahabubnagar - kickboxing, Body Pump, HIIT, strength, cardio and functional training for every level.',
-	alternates: { canonical: '/classes' },
-};
+export const metadata = pageMetadata({
+	title: 'Group Fitness Classes in Mahabubnagar',
+	description: 'Join group fitness classes at RIXA FIT Mahabubnagar - kickboxing, Body Pump, HIIT, cardio, muscle building and functional training for every fitness level.',
+	path: '/classes',
+	keywords: ['fitness classes Mahabubnagar', 'kickboxing Mahabubnagar', 'HIIT classes', 'group workout'],
+});
 
 export default function ClassesPage() {
 	return (

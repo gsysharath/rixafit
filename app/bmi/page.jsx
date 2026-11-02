@@ -1,12 +1,14 @@
+import { pageMetadata } from '../../lib/seo';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
 import BmiCalculator from '../../components/BmiCalculator';
 
-export const metadata = {
-	title: 'BMI Calculator',
-	description: "Calculate your Body Mass Index (BMI) and healthy weight range with the free RIXA FIT BMI calculator.",
-	alternates: { canonical: '/bmi' },
-};
+export const metadata = pageMetadata({
+	title: 'Free BMI Calculator - Check Your Healthy Weight',
+	description: 'Use the free RIXA FIT BMI calculator to check your Body Mass Index and healthy weight range, then get a personalised plan from our Mahabubnagar trainers.',
+	path: '/bmi',
+	keywords: ['BMI calculator', 'body mass index', 'healthy weight calculator'],
+});
 
 export default function BmiPage() {
 	return (

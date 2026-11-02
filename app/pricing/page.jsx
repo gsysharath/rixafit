@@ -1,14 +1,16 @@
+import { pageMetadata } from '../../lib/seo';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
 import PlanCard from '../../components/cards/PlanCard';
 import { formatPrice, individualPlans, isBestValue, membershipNotes, plans, sharedPlans } from '../../data/plans';
 import { site, whatsappLink } from '../../data/site';
 
-export const metadata = {
-	title: 'Membership Plans & Pricing',
-	description: `RIXA FIT Mahabubnagar membership plans: ${plans.map((p) => `${p.name} ${formatPrice(p.price)}`).join(', ')}. Individual, couple and group memberships.`,
-	alternates: { canonical: '/pricing' },
-};
+export const metadata = pageMetadata({
+	title: 'Gym Membership Fees in Mahabubnagar',
+	description: `RIXA FIT membership plans: ${plans.filter((p) => p.category === 'Individual' && p.slug !== 'fit-60').map((p) => `${p.name} ${formatPrice(p.price)}`).join(', ')}, plus couple and group plans. Join today.`,
+	path: '/pricing',
+	keywords: ['gym fees Mahabubnagar', 'gym membership price', 'gym monthly fee', 'couple gym membership'],
+});
 
 const offersLd = {
 	'@context': 'https://schema.org',

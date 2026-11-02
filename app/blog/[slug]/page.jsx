@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../../lib/seo';
 import { notFound } from 'next/navigation';
 import NewsletterForm from '../../../components/forms/NewsletterForm';
 import CommentForm from '../../../components/forms/CommentForm';
@@ -16,12 +17,13 @@ export async function generateMetadata({ params }) {
 	const { slug } = await params;
 	const post = getPost(slug);
 	if (!post) return {};
-	return {
+	return pageMetadata({
 		title: post.title,
-		description: post.body[0].text.slice(0, 160),
-		alternates: { canonical: `/blog/${post.slug}` },
-		openGraph: { type: 'article', title: post.title, description: post.excerpt, publishedTime: post.date, images: [post.image] },
-	};
+		description: post.body[0].text.length > 155 ? `${post.body[0].text.slice(0, 152).trimEnd()}...` : post.body[0].text,
+		path: `/blog/${post.slug}`,
+		type: 'article',
+		publishedTime: post.date,
+	});
 }
 
 function DecoratedHeading({ children }) {
@@ -61,14 +63,15 @@ export default async function BlogDetailsPage({ params }) {
 		headline: post.title,
 		datePublished: post.date,
 		author: { '@type': 'Organization', name: post.author },
-		publisher: { '@type': 'Organization', name: site.name },
+		dateModified: post.date,
+		publisher: { '@type': 'Organization', name: site.name, logo: { '@type': 'ImageObject', url: `${site.url}/images/logo-full.png` } },
 		image: `${site.url}${post.image}`,
 		mainEntityOfPage: `${site.url}/blog/${post.slug}`,
 	};
 
 	return (
 		<div className="bg-[#01010F] text-[#E7E7E7]">
-			<PageBanner title="Blog" gradient={true} crumbs={[{ label: 'Blog', href: '/blog' }, { label: 'Article' }]} />
+			<PageBanner title="Blog" titleAs="div" gradient={true} crumbs={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} />
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd).replace(/</g, '\\u003c') }} />
 		<div className="">
 			<div className="max-w-[1320px] mx-auto px-[15px]">
