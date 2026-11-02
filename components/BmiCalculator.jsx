@@ -1,21 +1,21 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { calculateBmiMetrics, toKg, toMeters } from '../lib/bmi.mjs';
+import { bmiCategoryLabel, calculateBmiMetrics, toKg, toMeters } from '../lib/bmi.mjs';
 
-const inputClass = 'w-full h-[46px] px-[14px] bg-[#F67A45] bg-opacity-10 border-b-[2px] border-[#F67A45] text-white placeholder:text-[#E7E7E7]/50 focus:outline-none focus:bg-[#F67A45]/20';
+const inputClass = 'w-full h-[46px] px-[14px] bg-[#971A1E] bg-opacity-10 border-b-[2px] border-[#E22C32] text-white placeholder:text-[#E7E7E7]/50 focus:outline-none focus:bg-[#971A1E]/20';
 const selectClass = `${inputClass} appearance-none`;
 
 function SwipeButton({ children, type = 'button', onClick }) {
 	return (
 		<button type={type} onClick={onClick} className="group relative w-full overflow-hidden">
-			<span className="absolute top-0 right-0 bottom-0 left-0 bg-[#F67A45] group-hover:scale-y-0 group-hover:delay-0 delay-[.4s] transition-all duration-[.3s]"></span>
-			<span className="absolute top-0 right-0 bottom-0 left-0 bg-[#D5BDA2] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] delay-0 transition-all duration-[.3s]"></span>
-			<span className="absolute top-0 right-0 bottom-0 left-0 bg-[#F67A45] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></span>
+			<span className="absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E] group-hover:scale-y-0 group-hover:delay-0 delay-[.4s] transition-all duration-[.3s]"></span>
+			<span className="absolute top-0 right-0 bottom-0 left-0 bg-[#D4D4D4] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] delay-0 transition-all duration-[.3s]"></span>
+			<span className="absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></span>
 			<span className="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></span>
-			<span className="absolute top-0 right-0 bottom-0 left-0 bg-[#F67A45] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></span>
+			<span className="absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></span>
 			<span className="relative h-[54px] flex justify-center items-center">
-				<span className="relative font-[Teko] font-medium text-[22px] uppercase">
+				<span className="relative font-teko font-medium text-[22px] uppercase">
 					<span className="absolute top-0 right-0 bottom-0 left-0 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.3s] transition-all duration-[.3s]">
 						{children}
 					</span>
@@ -40,11 +40,16 @@ function Field({ label, hint, children }) {
 	);
 }
 
+const categoryTone = {
+	Underweight: 'text-[#D4D4D4]',
+	'Healthy weight': 'text-[#76E4A6]',
+	Overweight: 'text-[#F6C945]',
+	'Obesity range': 'text-[#E22C32]',
+};
+
 function getCategory(bmi) {
-	if (bmi < 18.5) return { label: 'Underweight', tone: 'text-[#D5BDA2]' };
-	if (bmi < 25) return { label: 'Healthy weight', tone: 'text-[#76E4A6]' };
-	if (bmi < 30) return { label: 'Overweight', tone: 'text-[#F6C945]' };
-	return { label: 'Obesity range', tone: 'text-[#F67A45]' };
+	const label = bmiCategoryLabel(bmi);
+	return { label, tone: categoryTone[label] };
 }
 
 export default function BmiCalculator() {
@@ -184,22 +189,22 @@ export default function BmiCalculator() {
 
 							<div className="grid sm:grid-cols-[1fr_150px] gap-[16px]">
 								<SwipeButton type="submit">Calculate</SwipeButton>
-								<button type="button" onClick={reset} className="h-[54px] border border-[#F67A45] font-[Teko] text-[22px] uppercase hover:bg-[#F67A45]/10 transition-colors duration-[.3s]">
+								<button type="button" onClick={reset} className="h-[54px] border border-[#E22C32] font-teko text-[22px] uppercase hover:bg-[#971A1E]/10 transition-colors duration-[.3s]">
 									Reset
 								</button>
 							</div>
 
-							{error && <div className="border border-[#F67A45] bg-[#F67A45]/10 p-[18px] text-[#F67A45]">{error}</div>}
+							{error && <div className="border border-[#E22C32] bg-[#971A1E]/10 p-[18px] text-[#E22C32]">{error}</div>}
 						</form>
 					</div>
 
 					<div className="mt-[50px] xl:mt-0">
-						<div className="border-[10px] border-[#F67A45] bg-[#D5BDA2] text-[#01010F] p-[28px] md:p-[46px]">
-							<div className="font-[Teko] text-[38px] md:text-[52px] font-semibold uppercase leading-[1]">Your BMI Result</div>
+						<div className="border-[10px] border-[#E22C32] bg-[#D4D4D4] text-[#01010F] p-[28px] md:p-[46px]">
+							<div className="font-teko text-[38px] md:text-[52px] font-semibold uppercase leading-[1]">Your BMI Result</div>
 							{preview ? (
 								<div className="pt-[26px]">
-									<div className="font-[Teko] text-[92px] md:text-[130px] font-semibold leading-[.85]">{preview.bmi}</div>
-									<div className={`font-[Teko] text-[34px] font-semibold uppercase ${preview.category.tone}`}>{preview.category.label}</div>
+									<div className="font-teko text-[92px] md:text-[130px] font-semibold leading-[.85]">{preview.bmi}</div>
+									<div className={`font-teko text-[34px] font-semibold uppercase ${preview.category.tone}`}>{preview.category.label}</div>
 									<div className="mt-[22px] grid gap-[10px]">
 										<div>Healthy weight range for your height: {preview.minHealthyWeight}kg - {preview.maxHealthyWeight}kg.</div>
 										<div>Current weight used: {preview.kg}kg.</div>

@@ -2,9 +2,9 @@ import PageBanner from '../../components/PageBanner';
 
 function SectionHeading({ eyebrow, title }) {
 	return (
-		<div className="font-[Teko] flex items-center gap-[15px] uppercase">
+		<div className="font-teko flex items-center gap-[15px] uppercase">
 			<div className="font-semibold text-[40px] md:text-[60px] leading-[1]">{title}</div>
-			<div className="font-medium text-[12px] text-[#F67A45] relative top-[-5px] border-r-[2px] border-l-[2px] border-[#F67A45] px-[5px] [writing-mode:tb]">{eyebrow}</div>
+			<div className="font-medium text-[12px] text-[#E22C32] relative top-[-5px] border-r-[2px] border-l-[2px] border-[#E22C32] px-[5px] [writing-mode:tb]">{eyebrow}</div>
 		</div>
 	);
 }
@@ -12,7 +12,7 @@ function SectionHeading({ eyebrow, title }) {
 function Bullet({ children }) {
 	return (
 		<div className="flex items-start gap-[10px]">
-			<div className="text-[#F67A45] pt-[6px]"><i className="fa fa-caret-right"></i></div>
+			<div className="text-[#E22C32] pt-[6px]"><i className="fa fa-caret-right"></i></div>
 			<div className="flex-1">{children}</div>
 		</div>
 	);
@@ -22,9 +22,9 @@ function TermItem({ number, title, points }) {
 	return (
 		<div className="pt-[40px]">
 			<div className="flex items-center gap-[10px]">
-				<div className="font-[Teko] font-semibold text-[28px] text-[#D5BDA2]">{number}.</div>
-				<div className="font-[Teko] font-semibold text-[28px] uppercase">{title}</div>
-				<div className="flex-1 border-t-[1px] border-[#F67A45] border-opacity-30"></div>
+				<div className="font-teko font-semibold text-[28px] text-[#D4D4D4]">{number}.</div>
+				<div className="font-teko font-semibold text-[28px] uppercase">{title}</div>
+				<div className="flex-1 border-t-[1px] border-[#E22C32] border-opacity-30"></div>
 			</div>
 			<div className="pt-[20px] grid gap-[10px]">
 				{points.map((p, i) => <Bullet key={i}>{p}</Bullet>)}
@@ -35,10 +35,10 @@ function TermItem({ number, title, points }) {
 
 function GuidelineItem({ emoji, title, children }) {
 	return (
-		<div className="flex items-start gap-[15px] py-[20px] border-t-[1px] border-[#F67A45] border-opacity-30">
+		<div className="flex items-start gap-[15px] py-[20px] border-t-[1px] border-[#E22C32] border-opacity-30">
 			<div className="text-[24px] leading-[1]">{emoji}</div>
 			<div className="flex-1">
-				<span className="font-semibold text-[#D5BDA2]">{title} </span>
+				<span className="font-semibold text-[#D4D4D4]">{title} </span>
 				<span>{children}</span>
 			</div>
 		</div>
@@ -119,6 +119,12 @@ const guidelines = [
 	{ emoji: '🙌', title: 'Respect Others -', children: 'Share equipment, minimize mobile use, and maintain discipline.' },
 ];
 
+export const metadata = {
+	title: 'Terms & Conditions',
+	description: "RIXA FIT membership terms, conditions and member guidelines.",
+	alternates: { canonical: '/terms' },
+};
+
 export default function TermsPage() {
 	return (
 		<div className="bg-[#01010F] text-[#E7E7E7]">
@@ -126,7 +132,7 @@ export default function TermsPage() {
 			<div className="py-[100px] md:py-[150px]">
 				<div className="max-w-[1320px] mx-auto px-[15px]">
 					<SectionHeading title="Membership Terms" eyebrow="Terms &amp; Conditions" />
-					<div className="pt-[10px] text-[#D5BDA2]">RIXA Fit - Membership Terms &amp; Conditions</div>
+					<div className="pt-[10px] text-[#D4D4D4]">RIXA Fit - Membership Terms &amp; Conditions</div>
 
 					{terms.map((t, i) => (
 						<TermItem key={t.title} number={String(i + 1).padStart(2, '0')} title={t.title} points={t.points} />
@@ -134,12 +140,12 @@ export default function TermsPage() {
 
 					<div className="pt-[100px]"></div>
 					<SectionHeading title="Member Guidelines" eyebrow="Please Follow" />
-					<div className="pt-[10px] text-[#D5BDA2]">To ensure a safe and enjoyable environment for everyone:</div>
+					<div className="pt-[10px] text-[#D4D4D4]">To ensure a safe and enjoyable environment for everyone:</div>
 					<div className="pt-[30px]">
 						{guidelines.map((g) => (
 							<GuidelineItem key={g.title} emoji={g.emoji} title={g.title}>{g.children}</GuidelineItem>
 						))}
-						<div className="border-t-[1px] border-[#F67A45] border-opacity-30"></div>
+						<div className="border-t-[1px] border-[#E22C32] border-opacity-30"></div>
 					</div>
 				</div>
 			</div>

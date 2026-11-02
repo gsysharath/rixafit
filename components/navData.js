@@ -1,3 +1,8 @@
+import { classes } from '../data/classes';
+import { posts } from '../data/posts';
+import { services } from '../data/services';
+import { trainers } from '../data/trainers';
+
 export const navGroups = [
 	{
 		key: 'classes',
@@ -5,7 +10,7 @@ export const navGroups = [
 		mobileLabel: 'CLASSES',
 		links: [
 			{ label: 'Class List', mobileLabel: 'CLASS LIST', href: '/classes' },
-			{ label: 'Class Details', mobileLabel: 'CLASS DETAILS', href: '/class-details' },
+			{ label: 'Class Details', mobileLabel: 'CLASS DETAILS', href: `/classes/${classes[0].slug}` },
 		],
 	},
 	{
@@ -14,7 +19,7 @@ export const navGroups = [
 		mobileLabel: 'SERVICES',
 		links: [
 			{ label: 'Our Services', mobileLabel: 'OUR SERVICES', href: '/services' },
-			{ label: 'Service Details', mobileLabel: 'SERVICE DETAILS', href: '/service-details' },
+			{ label: 'Service Details', mobileLabel: 'SERVICE DETAILS', href: `/services/${services[0].slug}` },
 		],
 	},
 	{
@@ -23,7 +28,7 @@ export const navGroups = [
 		mobileLabel: 'BLOG',
 		links: [
 			{ label: 'Blog List', mobileLabel: 'OUR BLOG', href: '/blog' },
-			{ label: 'Blog Details', mobileLabel: 'BLOG DETAILS', href: '/blog-details' },
+			{ label: 'Blog Details', mobileLabel: 'BLOG DETAILS', href: `/blog/${posts[0].slug}` },
 		],
 	},
 	{
@@ -46,7 +51,7 @@ export const navGroups = [
 		mobileLabel: 'TRAINER',
 		links: [
 			{ label: 'Trainer List', mobileLabel: 'OUR TRAINER', href: '/trainer' },
-			{ label: 'Trainer Details', mobileLabel: 'TRAINER DETAILS', href: '/trainer-details' },
+			{ label: 'Trainer Details', mobileLabel: 'TRAINER DETAILS', href: `/trainer/${trainers[0].slug}` },
 		],
 	},
 ];

@@ -3,4 +3,7 @@ node_modules
 out
 build
 *.log
+.env
 .env*.local
+.vercel
+.DS_Store

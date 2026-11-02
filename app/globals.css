@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Keyboard users get a visible focus ring; mouse users keep the template look. */
+:focus-visible {
+	outline: 2px solid #E22C32;
+	outline-offset: 2px;
+}
+
+/* Native select options inherit the dark template palette. */
+select option {
+	color: #01010F;
+	background: #FFFFFF;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
