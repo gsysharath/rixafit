@@ -17,7 +17,7 @@ export const site = {
 	description:
 		"RIXA Fit is Mahabubnagar's premier fitness studio - modern equipment, expert trainers, group classes and personal training for every fitness level.",
 	url: resolveSiteUrl(),
-	email: 'rixafit2024@gmail.com',
+	email: 'info@rixafit.com',
 	phone: '+918096669901',
 	phoneDisplay: '+91 80966 69901',
 	altPhone: '+919052507670',

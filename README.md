@@ -8,7 +8,7 @@ forms deliver to the gym's inbox with an automatic confirmation email to the vis
 
 ```bash
 npm install
-cp .env.example .env.local   # then fill in SMTP_PASS (see below)
+cp .env.example .env.local   # then fill in SMTP_PASS (info@rixafit.com mailbox password)
 npm run dev                  # http://localhost:3000
 ```
 
@@ -29,11 +29,11 @@ npm run build && npm start   # production build locally
 
 | Variable | Required | Value |
 | --- | --- | --- |
-| `SMTP_USER` | yes | `rixafit2024@gmail.com` |
-| `SMTP_PASS` | yes | Gmail **App Password** (16 characters) |
-| `SMTP_HOST` | no | `smtp.gmail.com` (default) |
+| `SMTP_USER` | yes | `info@rixafit.com` |
+| `SMTP_PASS` | yes | The `info@rixafit.com` mailbox password |
+| `SMTP_HOST` | no | `smtpout.secureserver.net` (default) |
 | `SMTP_PORT` | no | `465` (default) |
-| `MAIL_TO` | no | Inbox that receives enquiries (defaults to `site.email`) |
+| `MAIL_TO` | no | Inbox(es) that receive enquiries, comma-separated (defaults to `info@rixafit.com`) |
 | `MAIL_FROM_NAME` | no | Sender name, default `RIXA FIT` |
 | `NEXT_PUBLIC_SITE_URL` | no | Defaults to `https://rixafit.com` in production builds |
 
@@ -50,13 +50,23 @@ npm run build && npm start   # production build locally
    Leave the NS, SOA, `_domainconnect` and `_dmarc` records unchanged. If GoDaddy won't let you edit the "WebsiteBuilder Site" record, delete it and add the new A record (this takes the GoDaddy builder site offline, which is intended).
 3. Wait until Vercel shows **Valid Configuration** for both domains (usually minutes, up to a few hours). Vercel issues the HTTPS certificate automatically.
 
-### Creating the Gmail App Password
+### Email (info@rixafit.com - GoDaddy Professional Email powered by Titan)
 
-1. Sign in to the Gmail account at <https://myaccount.google.com/security>.
-2. Turn on **2-Step Verification** (required for app passwords).
-3. Open <https://myaccount.google.com/apppasswords>, create one named "RIXA FIT website" and copy the 16-character code into `SMTP_PASS`.
+Form notifications go to `info@rixafit.com` and every visitor gets an auto-reply sent from
+`info@rixafit.com` (replies land back in that mailbox). Mail is sent through GoDaddy's
+outgoing server `smtpout.secureserver.net` (port 465, SSL), the server GoDaddy specifies
+for websites. The domain's DNS already has the matching records - leave them as they are:
 
-Gmail allows roughly 500 emails/day; each submission sends two (notification + auto-reply).
+| Type | Name | Value |
+| --- | --- | --- |
+| MX | `@` | `smtp.secureserver.net` (priority 0) |
+| MX | `@` | `mailstore1.secureserver.net` (priority 10) |
+| TXT (SPF) | `@` | `v=spf1 include:secureserver.net -all` |
+| TXT (DMARC) | `_dmarc` | `v=DMARC1; p=quarantine; ...` |
+
+Use the mailbox password for `SMTP_PASS`. After changing environment variables in Vercel,
+redeploy (Deployments → ⋯ → Redeploy) so the new values are used. Each submission sends
+two emails (notification + auto-reply); GoDaddy applies a daily sending limit per mailbox.
 
 ## Forms
 
