@@ -1,10 +1,13 @@
 // Central business details for RIXA FIT. Update values here and every page,
 // the footer, contact page, SEO metadata and enquiry emails pick them up.
 
+// The live domain. Production builds (including Vercel previews) always point canonical
+// URLs, the sitemap and social tags here; NEXT_PUBLIC_SITE_URL can override it.
+const PRODUCTION_URL = 'https://rixafit.com';
+
 function resolveSiteUrl() {
 	if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
-	if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-	return 'http://localhost:3000';
+	return process.env.NODE_ENV === 'production' ? PRODUCTION_URL : 'http://localhost:3000';
 }
 
 export const site = {

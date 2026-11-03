@@ -25,7 +25,7 @@ npm run build && npm start   # production build locally
 
 1. Push this repository to GitHub and import it at <https://vercel.com/new> (framework: Next.js, no extra settings).
 2. Add the environment variables below in **Project → Settings → Environment Variables**.
-3. Deploy, then add your custom domain under **Settings → Domains** and set `NEXT_PUBLIC_SITE_URL` to it.
+3. Deploy, then connect **rixafit.com** (next section).
 
 | Variable | Required | Value |
 | --- | --- | --- |
@@ -35,7 +35,20 @@ npm run build && npm start   # production build locally
 | `SMTP_PORT` | no | `465` (default) |
 | `MAIL_TO` | no | Inbox that receives enquiries (defaults to `site.email`) |
 | `MAIL_FROM_NAME` | no | Sender name, default `RIXA FIT` |
-| `NEXT_PUBLIC_SITE_URL` | recommended | `https://your-domain.com` |
+| `NEXT_PUBLIC_SITE_URL` | no | Defaults to `https://rixafit.com` in production builds |
+
+### Connect rixafit.com (GoDaddy DNS)
+
+1. In Vercel: **Project → Settings → Domains** → add `rixafit.com`, then add `www.rixafit.com` and choose *Redirect to rixafit.com*. Vercel then shows the DNS values to use.
+2. In GoDaddy: **My Products → rixafit.com → DNS → DNS Records**:
+
+   | Action | Type | Name | Value (copy the exact value Vercel shows) | TTL |
+   | --- | --- | --- | --- | --- |
+   | Edit (replaces "WebsiteBuilder Site") | A | `@` | Vercel's IP, e.g. `216.198.79.1` or `76.76.21.21` | 1 Hour |
+   | Edit (currently `rixafit.com.`) | CNAME | `www` | Vercel's CNAME, e.g. `cname.vercel-dns.com` | 1 Hour |
+
+   Leave the NS, SOA, `_domainconnect` and `_dmarc` records unchanged. If GoDaddy won't let you edit the "WebsiteBuilder Site" record, delete it and add the new A record (this takes the GoDaddy builder site offline, which is intended).
+3. Wait until Vercel shows **Valid Configuration** for both domains (usually minutes, up to a few hours). Vercel issues the HTTPS certificate automatically.
 
 ### Creating the Gmail App Password
 
@@ -97,14 +110,14 @@ Built in (no action needed):
 - Structured data: `HealthClub`/`ExerciseGym` local business (address, both phones, hours, price range, map, Instagram), `WebSite`, `BreadcrumbList` on every inner page, `Service` on class and service pages, `OfferCatalog` for membership plans, `BlogPosting` for articles.
 - Web app manifest and icons, `en-IN` language, share image `public/images/og-image.jpg`.
 
-Set `NEXT_PUBLIC_SITE_URL` to the live domain - canonical URLs and the sitemap are generated at build time (on Vercel the production domain is used automatically).
+Canonical URLs, the sitemap and social tags use `https://rixafit.com` in production builds (set in `data/site.js`; `NEXT_PUBLIC_SITE_URL` overrides it).
 
 ### Getting found on Google ("gym near me", "gym in Mahabubnagar")
 
 Local gym searches are decided mostly by the Google map listing, so these steps matter as much as the website:
 
 1. **Google Business Profile** (<https://business.google.com>) - claim or create "RIXA FIT", category *Gym*, same address and phone numbers as the website, add the website link, hours, photos and the membership prices. Verify it (postcard/phone/video).
-2. **Google Search Console** (<https://search.google.com/search-console>) - add the domain, verify with the HTML tag method (put the token in `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` and redeploy), then submit `https://your-domain/sitemap.xml` and request indexing for the home page.
+2. **Google Search Console** (<https://search.google.com/search-console>) - add the domain, verify with the HTML tag method (put the token in `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` and redeploy), then submit `https://rixafit.com/sitemap.xml` and request indexing for the home page.
 3. **Bing Webmaster Tools** (<https://www.bing.com/webmasters>) - import from Search Console or use `NEXT_PUBLIC_BING_SITE_VERIFICATION`.
 4. **Reviews** - ask members for Google reviews and reply to them; review count and rating strongly influence map rankings.
 5. **Consistent details everywhere** - use the exact same name, address and phone on Instagram, Justdial, Sulekha and other listings, and link them to the website.
