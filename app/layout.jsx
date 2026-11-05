@@ -1,4 +1,5 @@
 import { Oswald, Teko, Vazirmatn } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import OffcanvasMenu from '../components/OffcanvasMenu';
@@ -136,6 +137,7 @@ export default function RootLayout({ children }) {
 				<Footer />
 				<OffcanvasMenu />
 				<TemplateScripts />
+				<Analytics />
 				<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(localBusiness)} />
 				<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(website)} />
 			</body>

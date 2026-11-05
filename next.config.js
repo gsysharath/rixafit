@@ -4,8 +4,9 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const csp = [
 	"default-src 'self'",
-	// Next.js injects small inline bootstrap scripts; dev mode also needs eval for fast refresh.
-	`script-src 'self' 'unsafe-inline'${isProd ? '' : " 'unsafe-eval'"}`,
+	// Next.js injects small inline bootstrap scripts; dev mode also needs eval for fast refresh
+	// and loads Vercel Analytics' debug script (production serves it from /_vercel/insights).
+	`script-src 'self' 'unsafe-inline'${isProd ? '' : " 'unsafe-eval' https://va.vercel-scripts.com"}`,
 	"style-src 'self' 'unsafe-inline'",
 	"img-src 'self' data: blob:",
 	"font-src 'self' data:",
