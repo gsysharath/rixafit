@@ -14,6 +14,18 @@ select option {
 	background: #FFFFFF;
 }
 
+/* Auto-scrolling review row (components/ReviewMarquee.jsx): slides by one copy of the list. */
+@keyframes reviews-marquee {
+	from { transform: translateX(0); }
+	to { transform: translateX(-50%); }
+}
+
+/* Soft ring that pulses out from the floating WhatsApp button (components/WhatsAppButton.jsx). */
+@keyframes wa-pulse {
+	0% { transform: scale(1); opacity: .55; }
+	80%, 100% { transform: scale(1.6); opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;

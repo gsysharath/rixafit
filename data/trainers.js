@@ -1,54 +1,41 @@
-// Trainer profiles. Each entry gets its own page at /trainer/[slug].
-// TODO(owner): replace these template names, roles, photos and bios with the real RIXA FIT team.
+// Trainer profiles. Each entry gets its own page at /trainer/[slug]; the first three
+// also appear on the home, about and service pages.
+// TODO(owner): confirm each trainer's role, specialties and bio.
+
+const SPECIALTIES = ['Personal Training', 'Strength', 'Fat Loss', 'Muscle Gain'];
 
 export const trainers = [
 	{
-		slug: 'john-wick-c',
-		name: 'John Wick C.',
-		role: 'Co-Founder',
-		image: '/images/home/trainer1.webp',
-		specialties: ['Strength', 'Fitness', 'Wellness', 'Boxing'],
-		bio: 'As co-founder, John sets the training standards at RIXA FIT. He specialises in strength programming and boxing conditioning, and loves helping beginners build confidence on the gym floor.',
+		slug: 'shiva',
+		name: 'Shiva',
+		role: 'Fitness Trainer',
+		image: '/images/trainer/shiva.webp',
+		specialties: SPECIALTIES,
+		bio: 'Shiva is part of the RIXA FIT coaching team, guiding members on the gym floor with personalised workouts, correct technique and steady progress tracking - whether you are just starting out or chasing a new strength goal.',
 	},
 	{
-		slug: 'ily-thompson',
-		name: 'Ily Thompson',
-		role: 'Head Trainer',
-		image: '/images/home/trainer2.webp',
-		specialties: ['Cardio', 'HIIT', 'Fat Loss', 'Mobility'],
-		bio: 'Ily leads our coaching team and designs the group class programme. Her sessions are energetic, technique-focused and built around sustainable fat loss and conditioning.',
+		slug: 'karthik',
+		name: 'Karthik',
+		role: 'Fitness Trainer',
+		image: '/images/trainer/karthik.webp',
+		specialties: SPECIALTIES,
+		bio: 'Karthik is part of the RIXA FIT coaching team, helping members build strength and muscle with structured programmes, clear form cues and the motivation to stay consistent week after week.',
 	},
 	{
-		slug: 'alex-ramirez',
-		name: 'Alex Ramirez',
-		role: 'Nutrition Consultant',
-		image: '/images/home/trainer3.webp',
-		specialties: ['Nutrition', 'Weight Loss', 'Muscle Gain', 'Lifestyle'],
-		bio: 'Alex creates practical meal plans that fit Indian kitchens and busy schedules. He works alongside the trainers so your diet and workouts push towards the same goal.',
+		slug: 'jayasurya',
+		name: 'Jayasurya',
+		role: 'Fitness Trainer',
+		image: '/images/trainer/jayasurya.webp',
+		specialties: SPECIALTIES,
+		bio: 'Jayasurya is part of the RIXA FIT coaching team, supporting members through weight loss, conditioning and everyday fitness with practical guidance and a focus on safe, sustainable progress.',
 	},
 	{
-		slug: 'david-jones',
-		name: 'David Jones',
-		role: 'Fitness Instructor',
-		image: '/images/trainer/t4.webp',
-		specialties: ['Functional', 'Core', 'Kettlebell', 'Endurance'],
-		bio: 'David runs our functional training and core sessions. He focuses on movement quality first, then builds strength and endurance on top of a solid foundation.',
-	},
-	{
-		slug: 'amaa-brown',
-		name: 'Amaa Brown',
-		role: 'Exercise Specialist',
-		image: '/images/trainer/t5.webp',
-		specialties: ['Rehab', 'Mobility', 'Posture', 'Flexibility'],
-		bio: 'Amaa specialises in corrective exercise and mobility. She helps members train around old injuries, improve posture and move pain-free.',
-	},
-	{
-		slug: 'daniel-lee',
-		name: 'Daniel Lee',
-		role: 'Training Expert',
-		image: '/images/trainer/t6.webp',
-		specialties: ['Hypertrophy', 'Powerlifting', 'Strength', 'Form'],
-		bio: 'Daniel coaches our muscle-building and strength members. Expect detailed form cues, structured progression and programmes that deliver measurable results.',
+		slug: 'jagadhish',
+		name: 'Jagadhish',
+		role: 'Fitness Trainer',
+		image: '/images/trainer/jagadhish.webp',
+		specialties: SPECIALTIES,
+		bio: 'Jagadhish is part of the RIXA FIT coaching team, coaching members through strength, conditioning and functional training with an emphasis on good form, consistency and results you can feel.',
 	},
 ];
 

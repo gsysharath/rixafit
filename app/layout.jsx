@@ -3,6 +3,8 @@ import { Analytics } from '@vercel/analytics/next';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import OffcanvasMenu from '../components/OffcanvasMenu';
+import AppDownloadDialog from '../components/AppDownloadDialog';
+import WhatsAppButton from '../components/WhatsAppButton';
 import TemplateScripts from '../components/TemplateScripts';
 import { site } from '../data/site';
 import { priceRange } from '../data/plans';
@@ -88,6 +90,7 @@ const localBusiness = {
 	image: [`${site.url}/images/og-image.jpg`, `${site.url}/gym/gym-floor-strength-zone.webp`, `${site.url}/gym/reception-desk-1.webp`],
 	logo: `${site.url}/images/logo-full.png`,
 	hasMap: site.mapUrl,
+	geo: { '@type': 'GeoCoordinates', latitude: site.geo.latitude, longitude: site.geo.longitude },
 	address: {
 		'@type': 'PostalAddress',
 		streetAddress: site.address.street,
@@ -135,7 +138,9 @@ export default function RootLayout({ children }) {
 				<Header />
 				<main id="main">{children}</main>
 				<Footer />
+				<WhatsAppButton />
 				<OffcanvasMenu />
+				<AppDownloadDialog />
 				<TemplateScripts />
 				<Analytics />
 				<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(localBusiness)} />

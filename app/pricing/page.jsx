@@ -50,7 +50,7 @@ function PlanGrid({ items }) {
 export default function PricingPage() {
 	return (
 		<div className="bg-[#01010F] text-[#E7E7E7]">
-			<PageBanner title="Pricing" gradient={false} crumbs={[{ label: 'Membership Plans' }]} />
+			<PageBanner title="Membership" gradient={false} crumbs={[{ label: 'Membership Plans' }]} />
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offersLd).replace(/</g, '\u003c') }} />
 		<div className="pt-[150px]">
 			<div className="max-w-[1320px] mx-auto px-[15px]">

@@ -1,7 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { navGroups } from './navData';
+import { navItems } from './navData';
 import LogoMark from './LogoMark';
 import { site, whatsappLink } from '../data/site';
 
@@ -62,7 +61,18 @@ function DropdownLink({ href, label, index }) {
 	);
 }
 
-function NavGroup({ label, links, home }) {
+function NavLink({ href, label }) {
+	return (
+		<div className="group relative">
+			<div className="relative">
+				<NavSwipeBg />
+				<NavHomeLink href={href} label={label} />
+			</div>
+		</div>
+	);
+}
+
+function NavGroup({ label, links }) {
 	return (
 		<div className="group relative">
 			<div className="relative">
@@ -73,7 +83,7 @@ function NavGroup({ label, links, home }) {
 				<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E]"></div>
 				<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F]"></div>
 				<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E] bg-opacity-10"></div>
-				<div className={home ? 'relative text-white' : 'relative'}>
+				<div className="relative">
 					<div className="border-t-[1px] border-[#E22C32] border-opacity-40"></div>
 					{links.map((link, i) => (
 						<div key={link.href}>
@@ -100,10 +110,6 @@ function CtaSwipeBg() {
 }
 
 export default function Header() {
-	const pathname = usePathname();
-	const home = pathname === '/';
-	const groups = home ? navGroups.filter((g) => g.key !== 'blog') : navGroups;
-
 	const navRow = (
 		<div className="flex justify-between items-center h-[90px] font-teko">
 			<div className="">
@@ -113,19 +119,18 @@ export default function Header() {
 			</div>
 			<div className="hidden xl:block">
 				<div className="flex text-[20px] font-medium">
-					<div className="group relative">
-						<div className="relative">
-							<NavSwipeBg />
-							<NavHomeLink href="/" label="HOME" />
-						</div>
-					</div>
-					{groups.map((g) => (
-						<NavGroup key={g.key} label={g.label} links={g.links} home={home} />
-					))}
+					<NavLink href="/" label="HOME" />
+					{navItems.map((item) =>
+						item.href ? (
+							<NavLink key={item.key} href={item.href} label={item.label} />
+						) : (
+							<NavGroup key={item.key} label={item.label} links={item.links} />
+						),
+					)}
 				</div>
 			</div>
 			<div className="">
-				<div className={home ? 'flex items-center text-white' : 'flex items-center'}>
+				<div className="flex items-center">
 					<a className="xl:hidden group relative" data-c-toggle="a" href="#offcanvas" role="button" aria-label="Open menu" aria-controls="offcanvas" aria-expanded="false">
 						<CtaSwipeBg />
 						<div className="relative h-[54px] w-[54px] flex justify-center items-center">
@@ -140,15 +145,29 @@ export default function Header() {
 						</div>
 					</a>
 					<div className="xl:hidden md:px-[20px] border-t-[1px] border-[#E22C32]"></div>
-					<a className="hidden md:block group relative" href="/pricing">
+					<a className="hidden md:block group relative" href={site.joinUrl} target="_blank" rel="noopener noreferrer">
 						<CtaSwipeBg />
-						<div className="relative h-[54px] w-[144px] flex justify-center items-center">
+						<div className="relative h-[54px] w-[124px] flex justify-center items-center">
 							<div className="relative">
 								<div className="absolute top-0 right-0 bottom-0 left-0 group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.3s] transition-all duration-[.3s]">JOIN NOW</div>
 								<div className="group-hover:scale-y-0 group-hover:delay-0 delay-[.3s] transition-all duration-[.3s]">JOIN NOW</div>
 							</div>
 						</div>
 					</a>
+					<div className="hidden md:block px-[5px] border-t-[1px] border-[#E22C32]"></div>
+					<button type="button" data-app-download="" className="hidden md:block group relative" aria-haspopup="dialog">
+						<CtaSwipeBg />
+						<div className="relative h-[54px] w-[124px] flex justify-center items-center">
+							<div className="relative">
+								<div className="absolute top-0 right-0 bottom-0 left-0 whitespace-nowrap group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.3s] transition-all duration-[.3s]">
+									<i className="fa-solid fa-mobile-screen-button mr-[6px]"></i>GET APP
+								</div>
+								<div className="whitespace-nowrap group-hover:scale-y-0 group-hover:delay-0 delay-[.3s] transition-all duration-[.3s]">
+									<i className="fa-solid fa-mobile-screen-button mr-[6px]"></i>GET APP
+								</div>
+							</div>
+						</div>
+					</button>
 					<div className="hidden md:block px-[20px] border-t-[1px] border-[#E22C32]"></div>
 					<a className="hidden md:block group relative" href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label="RIXA FIT on Instagram">
 						<CtaSwipeBg />
@@ -184,21 +203,12 @@ export default function Header() {
 
 	return (
 		<>
-			<div className={home ? 'pt-[40px] bg-white' : 'pt-[40px]'}></div>
-			{home ? (
-				<div className="sticky z-50 top-0 bg-white text-[#01010F]">
-					<div className="max-w-[1320px] mx-auto px-[15px]">{navRow}</div>
+			<div className="fixed top-0 right-0 left-0 z-[49] bg-[#01010F] h-[90px]"></div>
+			<div className="sticky top-0 z-50">
+				<div className="relative max-w-[1320px] mx-auto px-[15px]">
+					<div className="bg-[#D4D4D4] bg-opacity-20 px-[30px]">{navRow}</div>
 				</div>
-			) : (
-				<>
-					<div className="fixed top-0 right-0 left-0 z-[49] bg-[#01010F] h-[90px]"></div>
-					<div className="sticky top-0 z-50">
-						<div className="relative max-w-[1320px] mx-auto px-[15px]">
-							<div className="bg-[#D4D4D4] bg-opacity-20 px-[30px]">{navRow}</div>
-						</div>
-					</div>
-				</>
-			)}
+			</div>
 		</>
 	);
 }

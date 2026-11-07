@@ -1,22 +1,36 @@
 'use client';
 
-import { navGroups } from './navData';
+import { navItems } from './navData';
+import { site } from '../data/site';
 
-function ArrowRow({ label, dataCToggle, href = '#m' }) {
+function ArrowRowContent({ label }) {
+	return (
+		<>
+			<div className="">{label}</div>
+			<div className="flex-1 flex items-center gap-[5px]">
+				<div className="flex-1 border-t-[10px] border-[#D4D4D4] border-opacity-50"></div>
+				<div className="flex-1 border-t-[7px] border-[#D4D4D4] border-opacity-50"></div>
+				<div className="flex-1 border-t-[4px] border-[#D4D4D4] border-opacity-50"></div>
+				<div className="flex-1 border-t-[3px] border-[#D4D4D4] border-opacity-50"></div>
+				<div className="flex-1 border-t-[1px] border-[#D4D4D4] border-opacity-50"></div>
+			</div>
+			<div className="">
+				<img className="" src="/images/home/hero-arrow.svg" alt="" />
+			</div>
+		</>
+	);
+}
+
+function ArrowRow({ label, dataCToggle, href = '#m', external = false }) {
 	return (
 		<div className="">
-			<a className="flex items-center gap-[10px]" data-c-toggle={dataCToggle} href={href}>
-				<div className="">{label}</div>
-				<div className="flex-1 flex items-center gap-[5px]">
-					<div className="flex-1 border-t-[10px] border-[#D4D4D4] border-opacity-50"></div>
-					<div className="flex-1 border-t-[7px] border-[#D4D4D4] border-opacity-50"></div>
-					<div className="flex-1 border-t-[4px] border-[#D4D4D4] border-opacity-50"></div>
-					<div className="flex-1 border-t-[3px] border-[#D4D4D4] border-opacity-50"></div>
-					<div className="flex-1 border-t-[1px] border-[#D4D4D4] border-opacity-50"></div>
-				</div>
-				<div className="">
-					<img className="" src="/images/home/hero-arrow.svg" alt="" />
-				</div>
+			<a
+				className="flex items-center gap-[10px]"
+				data-c-toggle={dataCToggle}
+				href={href}
+				{...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+			>
+				<ArrowRowContent label={label} />
 			</a>
 		</div>
 	);
@@ -26,13 +40,12 @@ const Divider = () => <div className="border-t-[1px] border-[#D4D4D4] border-opa
 
 // Tailwind's JIT scanner only detects complete, literal class strings in source -
 // these must stay fully spelled out per key rather than built via template interpolation.
+// Add an entry here when a nav item in navData.js gets `links`.
 const submenuVisibilityClass = {
-	classes: "absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not([data-t='oclasses'])]/m:invisible",
-	services: "absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not([data-t='oservices'])]/m:invisible",
-	blog: "absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not([data-t='oblog'])]/m:invisible",
 	pages: "absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not([data-t='opages'])]/m:invisible",
-	trainer: "absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not([data-t='otrainer'])]/m:invisible",
 };
+
+const submenus = navItems.filter((item) => item.links);
 
 export default function OffcanvasMenu() {
 	return (
@@ -50,15 +63,31 @@ export default function OffcanvasMenu() {
 							<div className="">
 								<div className="grid grid-cols-1 gap-[20px] w-[300px]">
 									<ArrowRow label="HOME" href="/" dataCToggle={undefined} />
-									{navGroups.map((g) => (
-										<div key={g.key}>
+									{navItems.map((item) => (
+										<div key={item.key}>
 											<Divider />
-											<ArrowRow label={g.mobileLabel} dataCToggle={`o${g.key}`} />
+											{item.href ? (
+												<ArrowRow label={item.mobileLabel} href={item.href} dataCToggle={undefined} />
+											) : (
+												<ArrowRow label={item.mobileLabel} dataCToggle={`o${item.key}`} />
+											)}
 										</div>
 									))}
+									<div>
+										<Divider />
+										<ArrowRow label="JOIN NOW" href={site.joinUrl} external />
+									</div>
+									<div>
+										<Divider />
+										<div className="">
+											<button type="button" data-app-download="" aria-haspopup="dialog" className="w-full flex items-center gap-[10px] text-left">
+												<ArrowRowContent label="GET THE APP" />
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
-							{navGroups.map((g) => (
+							{submenus.map((g) => (
 								<div key={g.key}>
 									{/* section */}
 									<div className={submenuVisibilityClass[g.key]}>

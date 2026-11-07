@@ -7,7 +7,7 @@ import { site, whatsappLink } from '../data/site';
 const quickLinks = [
 	{ label: 'About Us', href: '/about' },
 	{ label: 'Our Services', href: '/services' },
-	{ label: 'Pricing Table', href: '/pricing' },
+	{ label: 'Membership', href: '/pricing' },
 	{ label: 'Contact Us', href: '/contact' },
 	{ label: 'Terms & Conditions', href: '/terms' },
 ];
@@ -51,7 +51,7 @@ export default function Footer() {
 	const year = new Date().getFullYear();
 
 	return (
-		<footer className={home ? `${topPad} bg-white text-[#01010F]` : topPad}>
+		<footer className={topPad}>
 			<div className="max-w-[1320px] mx-auto px-[15px]">
 				<div className="border-t-[1px] border-[#E22C32] border-opacity-50"></div>
 				<div className="flex justify-between">
@@ -101,6 +101,10 @@ export default function Footer() {
 						<div className="pt-[30px]"></div>
 						<div className="flex flex-col gap-[22px]">
 							{socialLinks.map((l) => <PlusLink key={l.href} href={l.href}>{l.label}</PlusLink>)}
+							<div className="flex items-center gap-[10px]">
+								<div className="text-[#E22C32]"><i className="fa fa-plus"></i></div>
+								<button type="button" data-app-download="" aria-haspopup="dialog" className="hover:text-[#E22C32]">Download App</button>
+							</div>
 						</div>
 					</div>
 					<div className="hidden md:block border-l-[1px] border-[#E22C32] border-opacity-50"></div>
@@ -154,10 +158,11 @@ export default function Footer() {
 					</div>
 				</div>
 				<div className="border-t-[1px] border-[#E22C32] border-opacity-50"></div>
-				<div className="py-[50px] flex justify-between items-center gap-[20px]">
+				{/* Extra bottom padding keeps this row clear of the floating WhatsApp button. */}
+				<div className="pt-[50px] pb-[120px] md:pb-[130px] flex justify-between items-center gap-[20px]">
 					<div className="">
 						<button type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-[10px] hover:text-[#E22C32]">
-							<img className={home ? 'rotate-90 invert' : 'rotate-90'} src="/images/home/hero-prev.svg" alt="" />
+							<img className="rotate-90" src="/images/home/hero-prev.svg" alt="" />
 							<span className="">TOP</span>
 						</button>
 					</div>
@@ -165,7 +170,7 @@ export default function Footer() {
 					<a className="flex items-center gap-[10px] hover:text-[#E22C32]" href={whatsappLink(`Hi ${site.name}, I'd like to know more about your memberships.`)} target="_blank" rel="noopener noreferrer">
 						<div className="">WhatsApp Us</div>
 						<div className="">
-							<img className={home ? 'invert' : ''} src="/images/home/hero-arrow.svg" alt="" />
+							<img className="" src="/images/home/hero-arrow.svg" alt="" />
 						</div>
 					</a>
 				</div>

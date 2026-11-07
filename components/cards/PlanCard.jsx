@@ -1,7 +1,7 @@
 import { durationLabel, formatPrice, monthlyCost, planEnquiryHref, planHighlights } from '../../data/plans';
 
 // Membership card from the template's pricing table. `featured` renders the red
-// highlighted card; `onLight` adjusts text colours for the white home page.
+// highlighted card.
 // Tailwind needs literal class names, so both variants are spelled out in full.
 
 function Bars({ featured }) {
@@ -15,7 +15,7 @@ function Bars({ featured }) {
 	);
 }
 
-function InfoBox({ children, featured, onLight }) {
+function InfoBox({ children, featured }) {
 	return (
 		<div className="group relative">
 			{featured ? (
@@ -33,7 +33,7 @@ function InfoBox({ children, featured, onLight }) {
 			)}
 			<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
 			<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E] bg-opacity-10 border-[1px] border-[#E22C32] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
-			<div className={`relative h-[30px] min-w-[50px] px-[8px] flex justify-center items-center text-[12px] leading-[1] whitespace-nowrap ${onLight && !featured ? 'text-white' : ''}`}>
+			<div className={`relative h-[30px] min-w-[50px] px-[8px] flex justify-center items-center text-[12px] leading-[1] whitespace-nowrap`}>
 				<div className="relative">
 					<div className="absolute top-0 right-0 bottom-0 left-0 text-[#E7E7E7] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.3s] transition-all duration-[.3s]">
 						{children}
@@ -47,7 +47,7 @@ function InfoBox({ children, featured, onLight }) {
 	);
 }
 
-function ChoosePlan({ plan, featured, onLight }) {
+function ChoosePlan({ plan, featured }) {
 	return (
 		<a className="group relative" href={planEnquiryHref(plan)} aria-label={`Choose the ${plan.name} plan`}>
 			{featured ? (
@@ -69,7 +69,7 @@ function ChoosePlan({ plan, featured, onLight }) {
 			)}
 			<div className="relative h-[54px] w-[144px] flex justify-center items-center">
 				<div className="relative font-teko">
-					<div className={`absolute top-0 right-0 bottom-0 left-0 ${featured ? 'text-[#01010F]' : onLight ? 'text-white' : ''} group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.3s] transition-all duration-[.3s]`}>CHOOSE PLAN</div>
+					<div className={`absolute top-0 right-0 bottom-0 left-0 ${featured ? 'text-[#01010F]' : ''} group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-0 delay-[.3s] transition-all duration-[.3s]`}>CHOOSE PLAN</div>
 					<div className="group-hover:scale-y-0 group-hover:delay-0 delay-[.3s] transition-all duration-[.3s]">CHOOSE PLAN</div>
 				</div>
 			</div>
@@ -77,7 +77,7 @@ function ChoosePlan({ plan, featured, onLight }) {
 	);
 }
 
-export default function PlanCard({ plan, featured = false, onLight = false }) {
+export default function PlanCard({ plan, featured = false }) {
 	const lineColor = featured ? 'border-[#D4D4D4]' : 'border-[#E22C32]';
 	const checkBg = featured ? 'bg-white bg-opacity-20' : 'bg-[#971A1E] bg-opacity-50';
 	const note = plan.months > 1
@@ -104,11 +104,11 @@ export default function PlanCard({ plan, featured = false, onLight = false }) {
 			</div>
 			<div className="pt-[50px]"></div>
 			<div className="flex justify-center items-center">
-				<InfoBox featured={featured} onLight={onLight}>{formatPrice(plan.price)}</InfoBox>
+				<InfoBox featured={featured}>{formatPrice(plan.price)}</InfoBox>
 				<div className={`px-[12px] sm:px-[20px] border-t-[1px] ${lineColor}`}></div>
-				<ChoosePlan plan={plan} featured={featured} onLight={onLight} />
+				<ChoosePlan plan={plan} featured={featured} />
 				<div className={`px-[12px] sm:px-[20px] border-t-[1px] ${lineColor}`}></div>
-				<InfoBox featured={featured} onLight={onLight}>{durationLabel(plan.months)}</InfoBox>
+				<InfoBox featured={featured}>{durationLabel(plan.months)}</InfoBox>
 			</div>
 			<div className="pt-[30px]"></div>
 			<div className="text-[12px]">{note}</div>

@@ -4,8 +4,9 @@ import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo';
 // Pages that render their own <h1> (e.g. blog articles) pass titleAs="div" to keep a single h1.
 export default function PageBanner({ title, gradient = false, crumbs, titleAs: TitleTag = 'h1' }) {
 	const trail = crumbs || [{ label: title }];
+	// Pulled up by the header's 90px height so the banner image starts at the very top.
 	return (
-		<div className="relative z-[49] mt-[-130px]">
+		<div className="relative z-[49] mt-[-90px]">
 			<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(breadcrumbJsonLd(trail))} />
 			<div className="absolute top-0 right-0 bottom-0 left-0">
 				<img className="absolute top-0 left-0 w-full h-full object-cover object-fit" src="/images/about/pagetitle.webp" alt="" fetchPriority="high" />

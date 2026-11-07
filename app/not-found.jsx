@@ -8,7 +8,7 @@ export const metadata = {
 const links = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Classes', href: '/classes' },
-	{ label: 'Pricing', href: '/pricing' },
+	{ label: 'Membership', href: '/pricing' },
 	{ label: 'Contact Us', href: '/contact' },
 ];
 
