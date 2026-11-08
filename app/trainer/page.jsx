@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { pageMetadata } from '../../lib/seo';
 import { trainers } from '../../data/trainers';
 import NewsletterForm from '../../components/forms/NewsletterForm';
@@ -190,7 +191,7 @@ export default function TrainerPage() {
 							</div>
 						</div>
 						<div className="text-[142px]">&#128170;</div>
-						<a className="w-[126px] h-[126px] text-[24px] text-[#01010F] bg-white hover:bg-[#D4D4D4] rounded-full flex items-center justify-center" href="/contact">
+						<Link className="w-[126px] h-[126px] text-[24px] text-[#01010F] bg-white hover:bg-[#D4D4D4] rounded-full flex items-center justify-center" href="/contact">
 							<div className="">
 								<div className="">CONTACT</div>
 								<div className="flex items-center gap-[10px]">
@@ -200,7 +201,7 @@ export default function TrainerPage() {
 									</div>
 								</div>
 							</div>
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

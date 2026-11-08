@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { pageMetadata } from '../../../lib/seo';
 import { notFound } from 'next/navigation';
 import { site, videoLink, whatsappLink } from '../../../data/site';
@@ -123,7 +124,7 @@ export default async function TrainerDetailsPage({ params }) {
 							<div className="">
 								<div className="flex gap-[10px]">
 									<div className="w-[72px] text-[#E22C32]">Website:</div>
-									<a className="hover:text-[#E22C32] break-all" href="/">{siteHost}</a>
+									<Link className="hover:text-[#E22C32] break-all" href="/">{siteHost}</Link>
 								</div>
 							</div>
 							<div className="">
@@ -330,7 +331,7 @@ export default async function TrainerDetailsPage({ params }) {
 							</div>
 						</div>
 						<div className="text-[142px]">&#128170;</div>
-						<a className="w-[126px] h-[126px] text-[24px] text-[#01010F] bg-white hover:bg-[#D4D4D4] rounded-full flex items-center justify-center" href="/contact">
+						<Link className="w-[126px] h-[126px] text-[24px] text-[#01010F] bg-white hover:bg-[#D4D4D4] rounded-full flex items-center justify-center" href="/contact">
 							<div className="">
 								<div className="">CONTACT</div>
 								<div className="flex items-center gap-[10px]">
@@ -340,7 +341,7 @@ export default async function TrainerDetailsPage({ params }) {
 									</div>
 								</div>
 							</div>
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

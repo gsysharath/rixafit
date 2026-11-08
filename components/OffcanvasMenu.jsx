@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { navItems } from './navData';
 import { site } from '../data/site';
 
@@ -21,17 +22,26 @@ function ArrowRowContent({ label }) {
 	);
 }
 
+// Page links use Next.js <Link> so they open instantly; '#...' links toggle the menu panels
+// (handled by TemplateScripts) and external links open in a new tab.
 function ArrowRow({ label, dataCToggle, href = '#m', external = false }) {
+	const isPage = !external && dataCToggle === undefined && href.startsWith('/');
 	return (
 		<div className="">
-			<a
-				className="flex items-center gap-[10px]"
-				data-c-toggle={dataCToggle}
-				href={href}
-				{...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-			>
-				<ArrowRowContent label={label} />
-			</a>
+			{isPage ? (
+				<Link className="flex items-center gap-[10px]" href={href}>
+					<ArrowRowContent label={label} />
+				</Link>
+			) : (
+				<a
+					className="flex items-center gap-[10px]"
+					data-c-toggle={dataCToggle}
+					href={href}
+					{...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+				>
+					<ArrowRowContent label={label} />
+				</a>
+			)}
 		</div>
 	);
 }

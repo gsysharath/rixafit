@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import HomeBmiForm from '../components/forms/HomeBmiForm';
 import NewsletterForm from '../components/forms/NewsletterForm';
 import PlanCard from '../components/cards/PlanCard';
@@ -165,9 +166,9 @@ export default function Home() {
 							<p className="">Our goal is to provide a premium and motivating fitness environment where individuals of all fitness levels can work towards their personal goals with the right guidance and support.</p>
 						</div>
 						<div className="pt-[40px] flex flex-wrap items-center gap-[20px]">
-							<a className="font-teko text-[20px] uppercase bg-[#971A1E] text-white px-[25px] py-[8px] hover:bg-white hover:text-[#971A1E] transition-colors duration-[.3s]" href="/about">
+							<Link className="font-teko text-[20px] uppercase bg-[#971A1E] text-white px-[25px] py-[8px] hover:bg-white hover:text-[#971A1E] transition-colors duration-[.3s]" href="/about">
 								More about us<i className="fa-solid fa-arrow-right ml-[10px] text-[14px]"></i>
-							</a>
+							</Link>
 							<div className="font-teko font-semibold text-[22px] uppercase">RIXA FIT – Moves You</div>
 						</div>
 					</div>
@@ -241,7 +242,7 @@ export default function Home() {
 										<div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-tr from-[#971A1E] from-70% to-transparent to-70% opacity-50"></div>
 										<div className="relative p-[30px]">
 											<div className="font-teko font-semibold text-[28px] leading-[1.1]">
-												<a className="hover:text-[#E22C32] after:absolute after:inset-0" href={`/services/${service.slug}`}>{service.titleLines.join(' ')}</a>
+												<Link className="hover:text-[#E22C32] after:absolute after:inset-0" href={`/services/${service.slug}`}>{service.titleLines.join(' ')}</Link>
 											</div>
 											<div className="flex justify-start pt-[8px]">
 												<div className="">
@@ -260,9 +261,9 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="pt-[40px] flex justify-center">
-					<a className="font-teko text-[20px] uppercase border-[1px] border-[#E22C32] px-[25px] py-[8px] hover:bg-[#971A1E] transition-colors duration-[.3s]" href="/services">
+					<Link className="font-teko text-[20px] uppercase border-[1px] border-[#E22C32] px-[25px] py-[8px] hover:bg-[#971A1E] transition-colors duration-[.3s]" href="/services">
 						All services<i className="fa-solid fa-arrow-right ml-[10px] text-[14px]"></i>
-					</a>
+					</Link>
 				</div>
 			</div>
 		</div>
@@ -289,9 +290,9 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="pt-[50px] flex justify-center">
-					<a className="font-teko text-[22px] uppercase border-[1px] border-[#E22C32] px-[30px] py-[10px] hover:bg-[#971A1E] hover:text-white transition-colors duration-[.3s]" href="/pricing">
+					<Link className="font-teko text-[22px] uppercase border-[1px] border-[#E22C32] px-[30px] py-[10px] hover:bg-[#971A1E] hover:text-white transition-colors duration-[.3s]" href="/pricing">
 						View all {plans.length} membership plans <i className="fa fa-arrow-right ml-[8px]"></i>
-					</a>
+					</Link>
 				</div>
 			</div>
 		</div>
@@ -318,9 +319,9 @@ export default function Home() {
 						<div className="font-medium text-[12px] text-[#E22C32] relative top-[-5px] border-r-[2px] border-l-[2px] border-[#E22C32] px-[5px] [writing-mode:tb]">Timings</div>
 						<div className="font-semibold text-[48px] md:text-[60px] leading-[1]">Schedule</div>
 					</div>
-					<a className="font-teko text-[20px] uppercase border-[1px] border-[#E22C32] px-[25px] py-[8px] hover:bg-[#971A1E] transition-colors duration-[.3s]" href="/schedule">
+					<Link className="font-teko text-[20px] uppercase border-[1px] border-[#E22C32] px-[25px] py-[8px] hover:bg-[#971A1E] transition-colors duration-[.3s]" href="/schedule">
 						Full schedule<i className="fa-solid fa-arrow-right ml-[10px] text-[14px]"></i>
-					</a>
+					</Link>
 				</div>
 				<div className="pt-[50px]"></div>
 				<WeeklyTimetable />

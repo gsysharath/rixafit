@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Fragment } from 'react';
 import { breadcrumbJsonLd, jsonLdScript } from '../lib/seo';
 
@@ -37,13 +38,13 @@ export default function PageBanner({ title, gradient = false, crumbs, titleAs: T
 								<div className="">
 									<img className="" src="/images/home/hero-arrow.svg" alt="" />
 								</div>
-								<a className="hover:text-[#E22C32]" href="/">Home</a>
+								<Link className="hover:text-[#E22C32]" href="/">Home</Link>
 								{trail.map((c) => (
 									<Fragment key={c.label}>
 										<div className="">
 											<img className="" src="/images/home/hero-arrow.svg" alt="" />
 										</div>
-										{c.href ? <a className="hover:text-[#E22C32]" href={c.href}>{c.label}</a> : <div className="" aria-current="page">{c.label}</div>}
+										{c.href ? <Link className="hover:text-[#E22C32]" href={c.href}>{c.label}</Link> :<div className="" aria-current="page">{c.label}</div>}
 									</Fragment>
 								))}
 							</nav>

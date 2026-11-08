@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { navItems } from './navData';
 import LogoFull from './LogoFull';
 import { site, whatsappLink } from '../data/site';
@@ -26,9 +27,9 @@ function NavLabel({ label }) {
 
 function NavHomeLink({ href, label }) {
 	return (
-		<a href={href} className="relative h-[90px] flex items-center gap-[5px] px-[20px]">
+		<Link href={href} className="relative h-[90px] flex items-center gap-[5px] px-[20px]">
 			<NavLabel label={label} />
-		</a>
+		</Link>
 	);
 }
 
@@ -44,7 +45,7 @@ function NavTrigger({ label }) {
 function DropdownLink({ href, label, index }) {
 	const originClass = index % 2 === 0 ? 'origin-top' : 'origin-bottom';
 	return (
-		<a className="" href={href}>
+		<Link className="" href={href}>
 			<div className="group/c relative">
 				<div className="origin-bottom absolute top-0 right-0 bottom-0 left-0 bg-[#D4D4D4] group-[:not(:hover)]/c:scale-y-0 group-[:not(:hover)]/c:delay-[.06s] delay-0 transition-all duration-[.3s]"></div>
 				<div className="origin-bottom absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E] group-[:not(:hover)]/c:scale-y-0 group-[:not(:hover)]/c:delay-[.04s] delay-[.02s] transition-all duration-[.3s]"></div>
@@ -57,7 +58,7 @@ function DropdownLink({ href, label, index }) {
 					</div>
 				</div>
 			</div>
-		</a>
+		</Link>
 	);
 }
 
@@ -113,9 +114,9 @@ export default function Header() {
 	const navRow = (
 		<div className="flex justify-between items-center h-[90px] font-teko">
 			<div className="">
-				<a className="flex items-center gap-[5px]" href="/" aria-label={`${site.name} home`}>
+				<Link className="flex items-center gap-[5px]" href="/" aria-label={`${site.name} home`}>
 					<LogoFull className="w-[96px] h-[75px]" />
-				</a>
+				</Link>
 			</div>
 			<div className="hidden xl:block">
 				<div className="flex text-[20px] font-medium">

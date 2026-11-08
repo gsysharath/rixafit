@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Reveal from '../Reveal';
 
 // One service on /services: photo with the service name, icon and summary over it, and a large
@@ -34,7 +35,7 @@ function Heading({ service, barColor }) {
 export default function ServiceCard({ service, index }) {
 	const number = String(index + 1).padStart(2, '0');
 	return (
-		<a className="block" href={`/services/${service.slug}`} aria-label={`${service.name} details`}>
+		<Link className="block" href={`/services/${service.slug}`} aria-label={`${service.name} details`}>
 			<div className="group relative pr-[50px] pb-[50px]">
 				<div className="relative">
 					<Reveal>
@@ -75,6 +76,6 @@ export default function ServiceCard({ service, index }) {
 					<div className="font-teko font-semibold text-[120px] md:text-[200px] leading-[1] uppercase group-[:not(:hover)]:opacity-20 transition-all duration-[.3s]">{number}</div>
 				</div>
 			</div>
-		</a>
+		</Link>
 	);
 }

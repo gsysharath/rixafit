@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Reveal from '../Reveal';
 
 // All trainers: one column on phones, two on tablets, four on desktop.
@@ -17,14 +18,14 @@ export default function TrainerCard({ trainer }) {
 	const profile = `/trainer/${trainer.slug}`;
 	return (
 		<div className="border-[1px] border-[#D4D4D4] border-opacity-30">
-			<a className="block" href={profile} tabIndex={-1} aria-hidden="true">
+			<Link className="block" href={profile} tabIndex={-1} aria-hidden="true">
 				<Reveal>
 					<img className="w-full" src={trainer.image} alt="" />
 				</Reveal>
-			</a>
+			</Link>
 			<div className="flex items-center gap-[15px] p-[20px]">
 				<div className="min-w-0">
-					<a className="block font-teko font-semibold text-[28px] leading-[1.2] text-[#D4D4D4] hover:text-[#E22C32]" href={profile}>{trainer.name}</a>
+					<Link className="block font-teko font-semibold text-[28px] leading-[1.2] text-[#D4D4D4] hover:text-[#E22C32]" href={profile}>{trainer.name}</Link>
 					<div className="text-[16px]">{trainer.role}</div>
 				</div>
 				<div className="flex-1 flex items-center gap-[5px]">
@@ -34,7 +35,7 @@ export default function TrainerCard({ trainer }) {
 					<div className="flex-1 border-t-[7px] border-[#D4D4D4] border-opacity-50"></div>
 					<div className="flex-1 border-t-[10px] border-[#D4D4D4] border-opacity-50"></div>
 				</div>
-				<a className="group relative shrink-0" href={profile} aria-label={`${trainer.name} profile`}>
+				<Link className="group relative shrink-0" href={profile} aria-label={`${trainer.name} profile`}>
 					<div className="absolute top-0 right-0 bottom-0 left-0 border-l-[1px] border-[#D4D4D4] border-opacity-50 group-hover:scale-y-0 group-hover:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
 					<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#D4D4D4] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
 					<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
@@ -50,7 +51,7 @@ export default function TrainerCard({ trainer }) {
 							</div>
 						</div>
 					</div>
-				</a>
+				</Link>
 			</div>
 		</div>
 	);

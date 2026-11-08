@@ -1,3 +1,4 @@
+import Link from 'next/link';
 // Class tile used on /classes. Even and odd tiles reveal from opposite edges,
 // matching the original template. Class names stay literal for Tailwind.
 const REVEAL = {
@@ -15,7 +16,7 @@ export default function ClassCard({ item, index }) {
 	const r = index % 2 === 0 ? REVEAL.even : REVEAL.odd;
 	return (
 		<div className="">
-			<a className="block relative group/card" href={`/classes/${item.slug}`} aria-label={`${item.name} class details`}>
+			<Link className="block relative group/card" href={`/classes/${item.slug}`} aria-label={`${item.name} class details`}>
 				<div data-scroll="[data-scroll-item]" className="">
 					<div data-scroll-cog="" className="hidden">{`
 						{
@@ -52,7 +53,7 @@ export default function ClassCard({ item, index }) {
 						</div>
 					</div>
 				</div>
-			</a>
+			</Link>
 		</div>
 	);
 }

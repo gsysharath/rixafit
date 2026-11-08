@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { pageMetadata } from '../../lib/seo';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
@@ -73,7 +74,7 @@ export default function PricingPage() {
 							))}
 						</ul>
 						<div className="pt-[20px] text-[16px]">
-							Read the full <a className="underline hover:text-[#E22C32]" href="/terms">membership terms &amp; conditions</a>.
+							Read the full <Link className="underline hover:text-[#E22C32]" href="/terms">membership terms &amp; conditions</Link>.
 						</div>
 					</div>
 					<div className="border-[1px] border-[#E22C32] p-[30px] md:p-[50px]">
@@ -105,9 +106,9 @@ export default function PricingPage() {
 							<a className="font-teko text-[20px] uppercase bg-[#971A1E] text-white px-[25px] py-[8px] hover:bg-white hover:text-[#971A1E] transition-colors duration-[.3s]" href={whatsappLink(`Hi ${site.name}, I'd like to know more about your membership plans.`)} target="_blank" rel="noopener noreferrer">
 								<i className="fa-brands fa-whatsapp mr-[8px]"></i>WhatsApp Us
 							</a>
-							<a className="font-teko text-[20px] uppercase border-[1px] border-[#E22C32] px-[25px] py-[8px] hover:bg-[#971A1E] hover:text-white transition-colors duration-[.3s]" href="/contact#enquiry">
+							<Link className="font-teko text-[20px] uppercase border-[1px] border-[#E22C32] px-[25px] py-[8px] hover:bg-[#971A1E] hover:text-white transition-colors duration-[.3s]" href="/contact#enquiry">
 								Send an Enquiry
-							</a>
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -283,7 +284,7 @@ export default function PricingPage() {
 							</div>
 						</div>
 						<div className="text-[142px]">&#128170;</div>
-						<a className="w-[126px] h-[126px] text-[24px] text-[#01010F] bg-white hover:bg-[#D4D4D4] rounded-full flex items-center justify-center" href="/contact">
+						<Link className="w-[126px] h-[126px] text-[24px] text-[#01010F] bg-white hover:bg-[#D4D4D4] rounded-full flex items-center justify-center" href="/contact">
 							<div className="">
 								<div className="">CONTACT</div>
 								<div className="flex items-center gap-[10px]">
@@ -293,7 +294,7 @@ export default function PricingPage() {
 									</div>
 								</div>
 							</div>
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import PageBanner from '../components/PageBanner';
 
 export const metadata = {
@@ -22,9 +23,9 @@ export default function NotFound() {
 					<div className="pt-[20px]">The page you are looking for doesn&apos;t exist or has been moved.</div>
 					<div className="pt-[50px] flex flex-wrap justify-center gap-[20px]">
 						{links.map((l) => (
-							<a key={l.href} className="font-teko text-[22px] uppercase border-[1px] border-[#E22C32] px-[25px] py-[8px] hover:bg-[#971A1E] hover:text-white transition-colors duration-[.3s]" href={l.href}>
+							<Link key={l.href} className="font-teko text-[22px] uppercase border-[1px] border-[#E22C32] px-[25px] py-[8px] hover:bg-[#971A1E] hover:text-white transition-colors duration-[.3s]" href={l.href}>
 								{l.label}
-							</a>
+							</Link>
 						))}
 					</div>
 				</div>

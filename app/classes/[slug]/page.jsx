@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { jsonLdScript, pageMetadata, serviceJsonLd } from '../../../lib/seo';
 import { notFound } from 'next/navigation';
 import NewsletterForm from '../../../components/forms/NewsletterForm';
@@ -244,7 +245,7 @@ export default async function ClassDetailsPage({ params }) {
 							<div className="px-[10px] border-t-[4px] border-[#D4D4D4] border-opacity-50"></div>
 							<div className="px-[10px] border-t-[7px] border-[#D4D4D4] border-opacity-50"></div>
 							<div className="flex-1 border-t-[10px] border-[#D4D4D4] border-opacity-50"></div>
-							<a className="group relative" href="/pricing" aria-label="View membership plans">
+							<Link className="group relative" href="/pricing" aria-label="View membership plans">
 								<div className="absolute top-0 right-0 bottom-0 left-0 border-l-[1px] border-[#D4D4D4] border-opacity-50 group-hover:scale-y-0 group-hover:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
 								<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#D4D4D4] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
 								<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
@@ -260,7 +261,7 @@ export default async function ClassDetailsPage({ params }) {
 										</div>
 									</div>
 								</div>
-							</a>
+							</Link>
 						</div>
 					</div>
 				</div>

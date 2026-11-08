@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { pageMetadata } from '../../lib/seo';
 import { site, whatsappLink } from '../../data/site';
 import { groupActivities, personalTrainingNote } from '../../data/schedule';
@@ -63,9 +64,9 @@ export default function SchedulePage() {
 							<a className="font-teko text-[20px] uppercase bg-[#971A1E] text-white px-[25px] py-[8px] hover:bg-[#01010F] transition-colors duration-[.3s]" href={whatsappLink(`Hi ${site.name}, I'd like to book a personal training session.`)} target="_blank" rel="noopener noreferrer">
 								<i className="fa-brands fa-whatsapp mr-[8px]"></i>Book on WhatsApp
 							</a>
-							<a className="font-teko text-[20px] uppercase border-[1px] border-[#01010F] px-[25px] py-[8px] hover:bg-[#01010F] hover:text-white transition-colors duration-[.3s]" href="/trainer">
+							<Link className="font-teko text-[20px] uppercase border-[1px] border-[#01010F] px-[25px] py-[8px] hover:bg-[#01010F] hover:text-white transition-colors duration-[.3s]" href="/trainer">
 								Meet our trainers
-							</a>
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -176,7 +177,7 @@ export default function SchedulePage() {
 							<div className="px-[10px] border-t-[4px] border-[#D4D4D4] border-opacity-50"></div>
 							<div className="px-[10px] border-t-[7px] border-[#D4D4D4] border-opacity-50"></div>
 							<div className="flex-1 border-t-[10px] border-[#D4D4D4] border-opacity-50"></div>
-							<a className="group relative" href="/pricing" aria-label="View membership plans">
+							<Link className="group relative" href="/pricing" aria-label="View membership plans">
 								<div className="absolute top-0 right-0 bottom-0 left-0 border-l-[1px] border-[#D4D4D4] border-opacity-50 group-hover:scale-y-0 group-hover:delay-0 delay-[.4s] transition-all duration-[.3s]"></div>
 								<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#D4D4D4] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.4s] delay-0 transition-all duration-[.3s]"></div>
 								<div className="absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E] group-[:not(:hover)]:scale-y-0 group-[:not(:hover)]:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
@@ -192,7 +193,7 @@ export default function SchedulePage() {
 										</div>
 									</div>
 								</div>
-							</a>
+							</Link>
 						</div>
 					</div>
 				</div>

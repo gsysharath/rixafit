@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import LogoMark from './LogoMark';
 import { site, whatsappLink } from '../data/site';
@@ -34,7 +35,11 @@ function PlusLink({ href = '#', children }) {
 	return (
 		<div className="flex items-center gap-[10px]">
 			<div className="text-[#E22C32]"><i className="fa fa-plus"></i></div>
-			<a className="hover:text-[#E22C32]" href={href} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{children}</a>
+			{external ? (
+				<a className="hover:text-[#E22C32]" href={href} target="_blank" rel="noopener noreferrer">{children}</a>
+			) : (
+				<Link className="hover:text-[#E22C32]" href={href}>{children}</Link>
+			)}
 		</div>
 	);
 }
@@ -109,14 +114,14 @@ export default function Footer() {
 					</div>
 					<div className="hidden md:block border-l-[1px] border-[#E22C32] border-opacity-50"></div>
 					<div className="hidden md:block py-[50px]">
-						<a className="flex items-center gap-[5px]" href="/" aria-label={`${site.name} home`}>
+						<Link className="flex items-center gap-[5px]" href="/" aria-label={`${site.name} home`}>
 							<LogoMark className="w-[52px] h-[53px] shrink-0" />
 							<div className="flex-1 border-t-[10px] border-[#D4D4D4] border-opacity-50"></div>
 							<div className="flex-1 border-t-[7px] border-[#D4D4D4] border-opacity-50"></div>
 							<div className="flex-1 border-t-[4px] border-[#D4D4D4] border-opacity-50"></div>
 							<div className="flex-1 border-t-[3px] border-[#D4D4D4] border-opacity-50"></div>
 							<div className="flex-1 border-t-[1px] border-[#D4D4D4] border-opacity-50"></div>
-						</a>
+						</Link>
 						<div className="pt-[30px]"></div>
 						<div className="">
 							<div className="">Mahabubnagar's premier fitness studio -</div>

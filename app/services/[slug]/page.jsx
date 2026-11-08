@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { jsonLdScript, pageMetadata, serviceJsonLd } from '../../../lib/seo';
 import { notFound } from 'next/navigation';
 import { site, whatsappLink } from '../../../data/site';
@@ -93,14 +94,14 @@ export default async function ServiceDetailsPage({ params }) {
 									const current = s.slug === service.slug;
 									return (
 										<li key={s.slug}>
-											<a
+											<Link
 												href={`/services/${s.slug}`}
 												aria-current={current ? 'page' : undefined}
 												className={`flex items-center gap-[12px] py-[10px] border-b-[1px] border-[#D4D4D4]/15 hover:text-[#E22C32] transition-colors duration-[.3s] ${current ? 'text-[#E22C32]' : ''}`}
 											>
 												<i className={`${s.icon} w-[20px] text-center text-[#E22C32]`} aria-hidden="true"></i>
 												<span className="">{s.name}</span>
-											</a>
+											</Link>
 										</li>
 									);
 								})}
@@ -117,9 +118,9 @@ export default async function ServiceDetailsPage({ params }) {
 								<div className="text-[14px] uppercase opacity-80">{site.hours.sunday.label.replace(':', '')}</div>
 								<div className="font-teko font-medium text-[24px]">{site.hours.sunday.value}</div>
 							</div>
-							<a className="inline-block pt-[15px] underline underline-offset-4 hover:no-underline" href="/schedule">
+							<Link className="inline-block pt-[15px] underline underline-offset-4 hover:no-underline" href="/schedule">
 								Full schedule<i className="fa-solid fa-arrow-right ml-[8px] text-[13px]"></i>
-							</a>
+							</Link>
 						</div>
 
 						<div className="border-[1px] border-[#D4D4D4]/30 p-[30px]">
