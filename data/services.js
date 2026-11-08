@@ -1,5 +1,6 @@
 // RIXA FIT services. Each entry gets its own page at /services/[slug] and a card on /services.
-// `titleLines` keeps the two-line headline used by the cards; `icon` is a Font Awesome class.
+// `titleLines` keeps the two-line headline used by the cards; `tag` is the short label on the home
+// page slider; `icon` is a Font Awesome class.
 // `description` is also used for search-engine descriptions, so keep it to one or two sentences.
 // Images are real RIXA FIT photos (gym photos and frames from the gym-tour video).
 // The previous template services redirect to these pages - see next.config.js.
@@ -9,6 +10,7 @@ import { personalTrainingNote, scheduleNote } from './schedule';
 export const services = [
 	{
 		slug: 'personal-training',
+		tag: 'One-on-One',
 		name: 'Personal Training',
 		titleLines: ['Personal', 'Training'],
 		icon: 'fa-solid fa-user-check',
@@ -26,6 +28,7 @@ export const services = [
 	},
 	{
 		slug: 'weight-loss-fat-loss',
+		tag: 'Fat Loss',
 		name: 'Weight Loss & Fat Loss',
 		titleLines: ['Weight Loss', '& Fat Loss'],
 		icon: 'fa-solid fa-weight-scale',
@@ -42,6 +45,7 @@ export const services = [
 	},
 	{
 		slug: 'weight-gain-muscle-development',
+		tag: 'Muscle Gain',
 		name: 'Weight Gain & Muscle Development',
 		titleLines: ['Weight Gain', '& Muscle'],
 		icon: 'fa-solid fa-dumbbell',
@@ -58,6 +62,7 @@ export const services = [
 	},
 	{
 		slug: 'strength-conditioning',
+		tag: 'Strength',
 		name: 'Strength & Conditioning',
 		titleLines: ['Strength &', 'Conditioning'],
 		icon: 'fa-solid fa-bolt',
@@ -74,6 +79,7 @@ export const services = [
 	},
 	{
 		slug: 'functional-circuit-training',
+		tag: 'Full Body',
 		name: 'Functional & Circuit Training',
 		titleLines: ['Functional &', 'Circuit Training'],
 		icon: 'fa-solid fa-arrows-rotate',
@@ -91,6 +97,7 @@ export const services = [
 	},
 	{
 		slug: 'group-fitness-cardio',
+		tag: 'Group Sessions',
 		name: 'Group Fitness & Cardio',
 		titleLines: ['Group Fitness', '& Cardio'],
 		icon: 'fa-solid fa-people-group',
@@ -108,6 +115,7 @@ export const services = [
 	},
 	{
 		slug: 'zumba-dance-fitness',
+		tag: 'Dance',
 		name: 'Zumba & Dance Fitness',
 		titleLines: ['Zumba &', 'Dance Fitness'],
 		icon: 'fa-solid fa-music',
@@ -125,6 +133,7 @@ export const services = [
 	},
 	{
 		slug: 'fitness-boxing',
+		tag: 'Combat',
 		name: 'Fitness Boxing',
 		titleLines: ['Fitness', 'Boxing'],
 		icon: 'fa-solid fa-hand-fist',
@@ -142,6 +151,7 @@ export const services = [
 	},
 	{
 		slug: 'fitness-assessments',
+		tag: 'Progress',
 		name: 'Fitness Assessment & Progress Tracking',
 		titleLines: ['Fitness', 'Assessment'],
 		icon: 'fa-solid fa-chart-line',
@@ -158,6 +168,7 @@ export const services = [
 	},
 	{
 		slug: 'nutritional-guidance',
+		tag: 'Diet',
 		name: 'Practical Nutrition Guidance',
 		titleLines: ['Nutrition', 'Guidance'],
 		icon: 'fa-solid fa-apple-whole',

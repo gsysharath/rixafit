@@ -1,7 +1,7 @@
 'use client';
 
 import { navItems } from './navData';
-import LogoMark from './LogoMark';
+import LogoFull from './LogoFull';
 import { site, whatsappLink } from '../data/site';
 
 function NavSwipeBg() {
@@ -114,7 +114,7 @@ export default function Header() {
 		<div className="flex justify-between items-center h-[90px] font-teko">
 			<div className="">
 				<a className="flex items-center gap-[5px]" href="/" aria-label={`${site.name} home`}>
-					<LogoMark className="w-[60px] h-[61px]" />
+					<LogoFull className="w-[96px] h-[75px]" />
 				</a>
 			</div>
 			<div className="hidden xl:block">
