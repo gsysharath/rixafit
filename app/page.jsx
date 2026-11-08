@@ -26,6 +26,12 @@ export default function Home() {
 		<h1 className="sr-only">RIXA FIT - Gym &amp; Fitness Studio in Mahabubnagar</h1>
 		{/* Small gap between the header and the hero (the hero height accounts for it). */}
 		<div className="pt-[20px]"></div>
+		{/* Gym tour video for phones and tablets (lighter file), shown above the hero text */}
+		<div className="xl:hidden max-w-[1320px] mx-auto px-[15px]">
+			<div className="relative aspect-video overflow-hidden">
+				<HeroVideo src="/videos/hero/gym-tour-mobile.mp4" poster="/videos/hero/gym-tour.webp" media="(max-width: 1279.98px)" />
+			</div>
+		</div>
 		<div data-slider="" className="relative">
 			<div data-slider-cog="" className="hidden">{`
 				{
@@ -35,17 +41,17 @@ export default function Home() {
 					"controls": 0
 				}
 			`}</div>
-			{/* Gym tour video, shared by both hero slides (desktop only, like the photo it replaces) */}
+			{/* Gym tour video on desktop, shared by both hero slides (phones/tablets get the copy above) */}
 			<div className="absolute top-0 right-0 bottom-0 left-0 hidden xl:grid grid-cols-2 gap-[200px] pointer-events-none">
 				<div className=""></div>
 				<Reveal className="relative h-full">
-					<HeroVideo src="/videos/hero/gym-tour.mp4" poster="/videos/hero/gym-tour.webp" />
+					<HeroVideo src="/videos/hero/gym-tour.mp4" poster="/videos/hero/gym-tour.webp" media="(min-width: 1280px)" />
 				</Reveal>
 			</div>
 			<div className="hero">
 				<div className="group/s">
 					<div className="relative">
-						<div className="relative max-w-[1320px] mx-auto px-[15px] py-[100px] xl:py-0 xl:h-[calc(100vh-110px)] xl:min-h-[560px] xl:flex xl:flex-col xl:justify-center">
+						<div className="relative max-w-[1320px] mx-auto px-[15px] pt-[50px] pb-[100px] xl:py-0 xl:h-[calc(100vh-110px)] xl:min-h-[560px] xl:flex xl:flex-col xl:justify-center">
 							<div className="font-bold leading-[1] uppercase">
 								<div className="font-oswald">
 									<div className="text-[80px] md:text-[160px] text-transparent">
@@ -380,7 +386,7 @@ export default function Home() {
 				</div>
 				<div className="group/s">
 					<div className="relative">
-						<div className="relative max-w-[1320px] mx-auto px-[15px] py-[100px] xl:py-0 xl:h-[calc(100vh-110px)] xl:min-h-[560px] xl:flex xl:flex-col xl:justify-center">
+						<div className="relative max-w-[1320px] mx-auto px-[15px] pt-[50px] pb-[100px] xl:py-0 xl:h-[calc(100vh-110px)] xl:min-h-[560px] xl:flex xl:flex-col xl:justify-center">
 							<div className="font-bold leading-[1] uppercase">
 								<div className="font-oswald">
 									<div className="text-[80px] md:text-[160px] text-transparent">

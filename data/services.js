@@ -1,72 +1,176 @@
-// Services. Each entry gets its own page at /services/[slug].
-// `titleLines` keeps the two-line headline layout used by the service cards.
+// RIXA FIT services. Each entry gets its own page at /services/[slug] and a card on /services.
+// `titleLines` keeps the two-line headline used by the cards; `icon` is a Font Awesome class.
+// `description` is also used for search-engine descriptions, so keep it to one or two sentences.
+// Images are real RIXA FIT photos (gym photos and frames from the gym-tour video).
+// The previous template services redirect to these pages - see next.config.js.
+
+import { personalTrainingNote, scheduleNote } from './schedule';
 
 export const services = [
 	{
 		slug: 'personal-training',
 		name: 'Personal Training',
 		titleLines: ['Personal', 'Training'],
-		icon: '/images/services/s1.svg',
-		image: '/images/services/bg1s.webp',
-		summary: 'One-on-one coaching built around your goals.',
+		icon: 'fa-solid fa-user-check',
+		image: '/images/services/personal-training.webp',
 		summaryLines: ['One-on-one coaching built', 'around your goals.'],
 		description:
-			'Work with a dedicated coach who assesses your fitness, designs a programme for your goals and corrects your form in every session. Personal training is the fastest, safest way to lose weight, build muscle or prepare for an event.',
+			'One-on-one sessions with a RIXA FIT trainer who plans your workouts around your goal, corrects your form and keeps you accountable - whether you want to lose weight, build muscle or simply get fitter.',
+		highlights: [
+			'A programme planned around your goal and fitness level',
+			'Professional guidance and form correction in every session',
+			'Your workout and diet plans in the RIXA FIT app',
+			'Regular progress checks to keep you on track',
+		],
+		note: personalTrainingNote,
 	},
 	{
-		slug: 'fitness-classes',
-		name: 'Fitness Classes',
-		titleLines: ['Fitness', 'Classes'],
-		icon: '/images/services/s2.svg',
-		image: '/images/services/bg2s.webp',
-		summary: 'High-energy group sessions for every level.',
-		summaryLines: ['High-energy group sessions', 'for every level.'],
+		slug: 'weight-loss-fat-loss',
+		name: 'Weight Loss & Fat Loss',
+		titleLines: ['Weight Loss', '& Fat Loss'],
+		icon: 'fa-solid fa-weight-scale',
+		image: '/images/services/weight-loss-fat-loss.webp',
+		summaryLines: ['Lose fat steadily with', 'a plan that fits you.'],
 		description:
-			'From kickboxing and HIIT to Body Pump and cardio, our group classes keep you motivated with music, coaching and a supportive community. Every class offers easier and harder options so you can train at your own pace.',
+			'A structured plan that combines cardio, strength training and practical nutrition guidance to help you lose fat steadily and keep it off - without crash diets.',
+		highlights: [
+			'Workouts that mix cardio and strength training',
+			'Practical diet guidance you can follow every day',
+			'Progress tracking so you can see your results',
+			'Trainer support to help you stay consistent',
+		],
 	},
 	{
-		slug: 'strength-training',
-		name: 'Strength Training',
-		titleLines: ['Strength', 'Training'],
-		icon: '/images/services/s3.svg',
-		image: '/images/services/bg4s.webp',
-		summary: 'Build real strength with expert guidance.',
-		summaryLines: ['Build real strength with', 'expert guidance.'],
+		slug: 'weight-gain-muscle-development',
+		name: 'Weight Gain & Muscle Development',
+		titleLines: ['Weight Gain', '& Muscle'],
+		icon: 'fa-solid fa-dumbbell',
+		image: '/images/services/weight-gain-muscle-development.webp',
+		summaryLines: ['Build muscle and healthy', 'weight, step by step.'],
 		description:
-			'Our strength zone is equipped with racks, barbells, dumbbells and machines. Coaches teach the fundamental lifts, build structured progressions and help you get stronger without getting hurt.',
+			'For members who want to gain healthy weight and build muscle. Your trainer sets a progressive strength programme and guides your nutrition so you get stronger week after week.',
+		highlights: [
+			'Progressive muscle-building programmes',
+			'Guidance on correct technique and safe lifting',
+			'Nutrition guidance to support healthy weight gain',
+			'Regular progress checks',
+		],
 	},
 	{
-		slug: 'nutritional-guidance',
-		name: 'Nutritional Guidance',
-		titleLines: ['Nutritional', 'Guidance'],
-		icon: '/images/services/s5.svg',
-		image: '/images/services/bg5s.webp',
-		summary: 'Practical diet plans that fit your lifestyle.',
-		summaryLines: ['Practical diet plans that', 'fit your lifestyle.'],
+		slug: 'strength-conditioning',
+		name: 'Strength & Conditioning',
+		titleLines: ['Strength &', 'Conditioning'],
+		icon: 'fa-solid fa-bolt',
+		image: '/images/services/strength-conditioning.webp',
+		summaryLines: ['Get stronger, fitter and', 'ready for anything.'],
 		description:
-			'Results are made in the kitchen as much as the gym. Get simple, practical meal guidance based on local food, your schedule and your goals - whether that is fat loss, muscle gain or better energy.',
+			'Build all-round strength, stamina and athletic fitness on our modern equipment, with trainers who teach the key lifts and build your programme step by step.',
+		highlights: [
+			'Modern strength and conditioning equipment',
+			'Coaching on the fundamental lifts',
+			'Programmes that progress as you get stronger',
+			'Suitable for beginners and experienced lifters',
+		],
 	},
 	{
-		slug: 'calisthenics-challenge',
-		name: 'Calisthenics Challenge',
-		titleLines: ['CALISTHENICS', 'CHALLENGE'],
-		icon: '/images/services/s6.svg',
-		image: '/images/services/bg6s.webp',
-		summary: 'Master your bodyweight, one skill at a time.',
-		summaryLines: ['Master your bodyweight,', 'one skill at a time.'],
+		slug: 'functional-circuit-training',
+		name: 'Functional & Circuit Training',
+		titleLines: ['Functional &', 'Circuit Training'],
+		icon: 'fa-solid fa-arrows-rotate',
+		image: '/images/services/functional-circuit-training.webp',
+		summaryLines: ['Full-body workouts for', 'everyday strength.'],
 		description:
-			'Push-ups, pull-ups, dips, handstands and more. Our calisthenics challenge builds relative strength, control and mobility through progressive skill work and monthly milestones.',
+			'Fast-paced, full-body sessions that combine strength, cardio and movement drills to improve everyday fitness, coordination and endurance.',
+		highlights: [
+			'Full-body workouts in a short time',
+			'Improves strength, stamina and coordination',
+			'Easier and harder options for every level',
+			'Part of our group fitness activities',
+		],
+		note: scheduleNote,
+	},
+	{
+		slug: 'group-fitness-cardio',
+		name: 'Group Fitness & Cardio',
+		titleLines: ['Group Fitness', '& Cardio'],
+		icon: 'fa-solid fa-people-group',
+		image: '/images/services/group-fitness-cardio.webp',
+		summaryLines: ['Train together and', 'stay motivated.'],
+		description:
+			'Energetic group sessions and cardio training that keep you motivated - including our special Group Cardio session every Saturday morning.',
+		highlights: [
+			'Group sessions led by our trainers',
+			'Cardio training for stamina and fat loss',
+			'A motivating, supportive atmosphere',
+			'Saturday Special Group Cardio, 6:30 AM – 8:00 AM',
+		],
+		note: scheduleNote,
+	},
+	{
+		slug: 'zumba-dance-fitness',
+		name: 'Zumba & Dance Fitness',
+		titleLines: ['Zumba &', 'Dance Fitness'],
+		icon: 'fa-solid fa-music',
+		image: '/images/services/zumba-dance-fitness.webp',
+		summaryLines: ['Dance your way', 'to fitness.'],
+		description:
+			'Fun, music-driven workouts that burn calories, build stamina and lift your mood - no dance experience needed.',
+		highlights: [
+			'High-energy sessions set to music',
+			'Burns calories and builds stamina',
+			'Beginner-friendly - no experience needed',
+			'Part of our group fitness activities',
+		],
+		note: scheduleNote,
+	},
+	{
+		slug: 'fitness-boxing',
+		name: 'Fitness Boxing',
+		titleLines: ['Fitness', 'Boxing'],
+		icon: 'fa-solid fa-hand-fist',
+		image: '/images/services/fitness-boxing.webp',
+		summaryLines: ['Punch, move and build', 'real fitness.'],
+		description:
+			'Boxing-based workouts that build strength, speed, stamina and confidence - a great way to burn calories and release stress.',
+		highlights: [
+			'Boxing drills and conditioning',
+			'Builds power, speed and stamina',
+			'Great for stress relief and confidence',
+			'Part of our group fitness activities',
+		],
+		note: scheduleNote,
 	},
 	{
 		slug: 'fitness-assessments',
-		name: 'Fitness Assessments',
-		titleLines: ['Fitness', 'Assessments'],
-		icon: '/images/services/s4.svg',
-		image: '/images/services/bg1s.webp',
-		summary: 'Know your numbers and track progress.',
-		summaryLines: ['Know your numbers and', 'track progress.'],
+		name: 'Fitness Assessment & Progress Tracking',
+		titleLines: ['Fitness', 'Assessment'],
+		icon: 'fa-solid fa-chart-line',
+		image: '/images/services/fitness-assessments.webp',
+		summaryLines: ['Know where you start,', 'see how far you go.'],
 		description:
-			'Start with a clear baseline. We measure body composition, BMI, strength, endurance and mobility, then re-test regularly so you can see exactly how far you have come.',
+			'Start with a clear picture of your current fitness, set realistic goals with your trainer and track your progress over time.',
+		highlights: [
+			'A starting assessment of your fitness',
+			'Goals set together with your trainer',
+			'Progress tracking, including in the RIXA FIT app',
+			'Plans adjusted as you improve',
+		],
+	},
+	{
+		slug: 'nutritional-guidance',
+		name: 'Practical Nutrition Guidance',
+		titleLines: ['Nutrition', 'Guidance'],
+		icon: 'fa-solid fa-apple-whole',
+		image: '/images/services/nutritional-guidance.webp',
+		summaryLines: ['Practical eating plans', 'that fit your life.'],
+		description:
+			'Simple, practical diet guidance matched to your goal and daily routine, so your food supports the work you put in at the gym.',
+		highlights: [
+			'Diet plans matched to your fitness goal',
+			'Practical advice you can follow every day',
+			'View your diet plan anytime in the RIXA FIT app',
+			'Works alongside your workout programme',
+		],
 	},
 ];
 

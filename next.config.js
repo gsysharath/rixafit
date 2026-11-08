@@ -46,8 +46,12 @@ const legacyRedirects = [
 	['/service-details', '/services/personal-training'],
 	['/service-details.html', '/services/personal-training'],
 	['/trainer.html', '/trainer'],
-	['/trainer-details', '/trainer/john-wick-c'],
-	['/trainer-details.html', '/trainer/john-wick-c'],
+	['/trainer-details', '/trainer'],
+	['/trainer-details.html', '/trainer'],
+	// Template services replaced by RIXA FIT's real services (data/services.js).
+	['/services/fitness-classes', '/services/group-fitness-cardio'],
+	['/services/strength-training', '/services/strength-conditioning'],
+	['/services/calisthenics-challenge', '/services'],
 ];
 
 const nextConfig = {

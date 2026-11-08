@@ -2,25 +2,27 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-// Muted, looping gym-tour video for the home hero. The hero only shows media on desktop-width
-// screens, so the video is only downloaded there; visitors who prefer reduced motion see the
-// poster frame instead of moving video.
-export default function HeroVideo({ src, poster }) {
+// Muted, looping gym-tour video for the home hero. The home page renders one copy for desktop and
+// a lighter one for phones/tablets; `media` is the screen-size query each copy belongs to, so only
+// the matching file is downloaded. Visitors who prefer reduced motion, or who have Data Saver on,
+// see the poster frame instead of moving video.
+export default function HeroVideo({ src, poster, media = '(min-width: 1280px)' }) {
 	const ref = useRef(null);
 	const [play, setPlay] = useState(false);
 
 	useEffect(() => {
-		const wide = window.matchMedia('(min-width: 1280px)');
+		const screen = window.matchMedia(media);
 		const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
-		const update = () => setPlay(wide.matches && !calm.matches);
+		const saveData = navigator.connection?.saveData === true;
+		const update = () => setPlay(screen.matches && !calm.matches && !saveData);
 		update();
-		wide.addEventListener('change', update);
+		screen.addEventListener('change', update);
 		calm.addEventListener('change', update);
 		return () => {
-			wide.removeEventListener('change', update);
+			screen.removeEventListener('change', update);
 			calm.removeEventListener('change', update);
 		};
-	}, []);
+	}, [media]);
 
 	useEffect(() => {
 		const video = ref.current;
