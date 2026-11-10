@@ -39,7 +39,7 @@ export default function ServiceCard({ service, index }) {
 			<div className="group relative pr-[50px] pb-[50px]">
 				<div className="relative">
 					<Reveal>
-						<img className="w-full aspect-[20/13] object-cover" src={service.image} alt={`${service.name} at RIXA FIT`} />
+						<img className="w-full aspect-[20/13] object-cover" src={service.image} alt={service.imageAlt} />
 					</Reveal>
 					<div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-t from-[#01010F]/90 via-[#01010F]/40 to-[#01010F]/10"></div>
 					<div className="absolute top-0 right-0 bottom-0 left-0">

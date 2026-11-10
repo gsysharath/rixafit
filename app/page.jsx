@@ -235,7 +235,7 @@ export default function Home() {
 										<div className="origin-top absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E] group-[.tns-slide-active]/s:scale-y-0 group-[.tns-slide-active]/s:delay-[.3s] delay-[.1s] transition-all duration-[.3s]"></div>
 										<div className="origin-top absolute top-0 right-0 bottom-0 left-0 bg-[#01010F] group-[.tns-slide-active]/s:scale-y-0 group-[.tns-slide-active]/s:delay-[.2s] delay-[.2s] transition-all duration-[.3s]"></div>
 										<div className="origin-top absolute top-0 right-0 bottom-0 left-0 bg-[#971A1E] group-[.tns-slide-active]/s:scale-y-0 group-[.tns-slide-active]/s:delay-[.1s] delay-[.3s] transition-all duration-[.3s]"></div>
-										<img className="w-full aspect-[22/25] object-cover origin-bottom group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-0 delay-[.4s] transition-all duration-[.3s]" src={service.image} alt={`${service.name} at RIXA FIT`} loading="lazy" />
+										<img className="w-full aspect-[22/25] object-cover origin-bottom group-[:not(.tns-slide-active)]/s:scale-y-0 group-[:not(.tns-slide-active)]/s:delay-0 delay-[.4s] transition-all duration-[.3s]" src={service.image} alt={service.imageAlt} loading="lazy" />
 									</div>
 									<div className="absolute right-0 bottom-0 left-0">
 										<div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-tr from-[#01010F] from-70% to-transparent to-70%"></div>

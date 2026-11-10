@@ -2,7 +2,9 @@
 // `titleLines` keeps the two-line headline used by the cards; `tag` is the short label on the home
 // page slider; `icon` is a Font Awesome class.
 // `description` is also used for search-engine descriptions, so keep it to one or two sentences.
-// Images are real RIXA FIT photos (gym photos and frames from the gym-tour video).
+// Images are free-licence stock photos from Unsplash (https://unsplash.com/license - free for
+// commercial use, no permission or credit needed), chosen to show each activity. `imageSource`
+// records where each came from; `imageAlt` describes the photo for screen readers and search.
 // The previous template services redirect to these pages - see next.config.js.
 
 import { personalTrainingNote, scheduleNote } from './schedule';
@@ -15,6 +17,8 @@ export const services = [
 		titleLines: ['Personal', 'Training'],
 		icon: 'fa-solid fa-user-check',
 		image: '/images/services/personal-training.webp',
+		imageAlt: 'Personal trainer coaching a woman through a dumbbell exercise',
+		imageSource: 'https://unsplash.com/photos/a-man-and-woman-exercising-wSUlQl8HPYc',
 		summaryLines: ['One-on-one coaching built', 'around your goals.'],
 		description:
 			'One-on-one sessions with a RIXA FIT trainer who plans your workouts around your goal, corrects your form and keeps you accountable - whether you want to lose weight, build muscle or simply get fitter.',
@@ -33,6 +37,8 @@ export const services = [
 		titleLines: ['Weight Loss', '& Fat Loss'],
 		icon: 'fa-solid fa-weight-scale',
 		image: '/images/services/weight-loss-fat-loss.webp',
+		imageAlt: 'Woman measuring her waist with a measuring tape',
+		imageSource: 'https://unsplash.com/photos/a-woman-measures-her-waist-with-a-yellow-tape-KswNFGi1s44',
 		summaryLines: ['Lose fat steadily with', 'a plan that fits you.'],
 		description:
 			'A structured plan that combines cardio, strength training and practical nutrition guidance to help you lose fat steadily and keep it off - without crash diets.',
@@ -50,6 +56,8 @@ export const services = [
 		titleLines: ['Weight Gain', '& Muscle'],
 		icon: 'fa-solid fa-dumbbell',
 		image: '/images/services/weight-gain-muscle-development.webp',
+		imageAlt: 'Man doing dumbbell bicep curls in a gym',
+		imageSource: 'https://unsplash.com/photos/a-man-holding-a-dumbbell-in-a-gym-gYI_yJbsDcI',
 		summaryLines: ['Build muscle and healthy', 'weight, step by step.'],
 		description:
 			'For members who want to gain healthy weight and build muscle. Your trainer sets a progressive strength programme and guides your nutrition so you get stronger week after week.',
@@ -67,6 +75,8 @@ export const services = [
 		titleLines: ['Strength &', 'Conditioning'],
 		icon: 'fa-solid fa-bolt',
 		image: '/images/services/strength-conditioning.webp',
+		imageAlt: 'Woman performing a barbell back squat',
+		imageSource: 'https://unsplash.com/photos/woman-lifting-weights-in-a-gym-IYLLF511aOY',
 		summaryLines: ['Get stronger, fitter and', 'ready for anything.'],
 		description:
 			'Build all-round strength, stamina and athletic fitness on our modern equipment, with trainers who teach the key lifts and build your programme step by step.',
@@ -84,6 +94,8 @@ export const services = [
 		titleLines: ['Functional &', 'Circuit Training'],
 		icon: 'fa-solid fa-arrows-rotate',
 		image: '/images/services/functional-circuit-training.webp',
+		imageAlt: 'Man and woman doing kettlebell swings',
+		imageSource: 'https://unsplash.com/photos/man-and-woman-performing-kettlebell-swings-in-gym-SMaujCcYGHo',
 		summaryLines: ['Full-body workouts for', 'everyday strength.'],
 		description:
 			'Fast-paced, full-body sessions that combine strength, cardio and movement drills to improve everyday fitness, coordination and endurance.',
@@ -102,6 +114,8 @@ export const services = [
 		titleLines: ['Group Fitness', '& Cardio'],
 		icon: 'fa-solid fa-people-group',
 		image: '/images/services/group-fitness-cardio.webp',
+		imageAlt: 'Instructor leading a group fitness class through lunges',
+		imageSource: 'https://unsplash.com/photos/a-group-of-people-running-in-a-gym-q2P30VViDqQ',
 		summaryLines: ['Train together and', 'stay motivated.'],
 		description:
 			'Energetic group sessions and cardio training that keep you motivated - including our special Group Cardio session every Saturday morning.',
@@ -120,6 +134,8 @@ export const services = [
 		titleLines: ['Zumba &', 'Dance Fitness'],
 		icon: 'fa-solid fa-music',
 		image: '/images/services/zumba-dance-fitness.webp',
+		imageAlt: 'Group dance fitness class with arms raised',
+		imageSource: 'https://unsplash.com/photos/a-group-of-people-doing-yoga-in-a-park-b_4Ospu9B2c',
 		summaryLines: ['Dance your way', 'to fitness.'],
 		description:
 			'Fun, music-driven workouts that burn calories, build stamina and lift your mood - no dance experience needed.',
@@ -138,6 +154,8 @@ export const services = [
 		titleLines: ['Fitness', 'Boxing'],
 		icon: 'fa-solid fa-hand-fist',
 		image: '/images/services/fitness-boxing.webp',
+		imageAlt: 'Woman in boxing gloves punching pads held by a trainer',
+		imageSource: 'https://unsplash.com/photos/a-woman-in-a-black-top-and-red-boxing-gloves-nfZKyKlGujs',
 		summaryLines: ['Punch, move and build', 'real fitness.'],
 		description:
 			'Boxing-based workouts that build strength, speed, stamina and confidence - a great way to burn calories and release stress.',
@@ -156,6 +174,8 @@ export const services = [
 		titleLines: ['Fitness', 'Assessment'],
 		icon: 'fa-solid fa-chart-line',
 		image: '/images/services/fitness-assessments.webp',
+		imageAlt: 'Trainer reviewing fitness progress with a client on a tablet',
+		imageSource: 'https://unsplash.com/photos/trainer-discusses-progress-with-client-using-tablet-in-gym-5p8vhHUEEgY',
 		summaryLines: ['Know where you start,', 'see how far you go.'],
 		description:
 			'Start with a clear picture of your current fitness, set realistic goals with your trainer and track your progress over time.',
@@ -173,6 +193,8 @@ export const services = [
 		titleLines: ['Nutrition', 'Guidance'],
 		icon: 'fa-solid fa-apple-whole',
 		image: '/images/services/nutritional-guidance.webp',
+		imageAlt: 'Healthy bowl of chickpeas, grains, avocado and fresh fruit',
+		imageSource: 'https://unsplash.com/photos/a-bowl-of-food-with-a-wooden-spoon-in-it-BS0rcWYkmiI',
 		summaryLines: ['Practical eating plans', 'that fit your life.'],
 		description:
 			'Simple, practical diet guidance matched to your goal and daily routine, so your food supports the work you put in at the gym.',

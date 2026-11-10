@@ -39,7 +39,7 @@ export default async function ServiceDetailsPage({ params }) {
 				<div className="grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-[60px] xl:gap-[80px] items-start">
 					<div className="">
 						<Reveal>
-							<img className="w-full aspect-[20/13] object-cover" src={service.image} alt={`${service.name} at RIXA FIT`} />
+							<img className="w-full aspect-[20/13] object-cover" src={service.image} alt={service.imageAlt} />
 						</Reveal>
 						<div className="pt-[50px] flex items-center gap-[15px]">
 							<i className={`${service.icon} text-[34px] md:text-[40px] text-[#E22C32]`} aria-hidden="true"></i>
