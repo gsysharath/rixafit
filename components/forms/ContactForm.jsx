@@ -6,6 +6,7 @@ import { formValues, useEnquiry } from '../../lib/useEnquiry';
 import { useQueryParam } from '../../lib/useClientValue';
 import { services } from '../../data/services';
 import { site, whatsappLink } from '../../data/site';
+import { trackEvent } from '../GoogleAnalytics';
 
 const ROW = 'h-[90px] flex items-center gap-[10px]';
 const INTEREST_OPTIONS = ['Membership plans', ...services.map((s) => s.name), 'Something else'];
@@ -18,8 +19,12 @@ export default function ContactForm() {
 
 	async function onSubmit(event) {
 		event.preventDefault();
-		const ok = await submit({ ...formValues(event.currentTarget), plan });
-		if (ok) setFormKey((k) => k + 1);
+		const values = formValues(event.currentTarget);
+		const ok = await submit({ ...values, plan });
+		if (ok) {
+			trackEvent('generate_lead', { form: 'contact', interest: values.interest || '', plan });
+			setFormKey((k) => k + 1);
+		}
 	}
 
 	const defaultMessage = plan ? `Hi, I'm interested in the ${plan}. Please share the details.` : '';

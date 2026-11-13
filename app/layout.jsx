@@ -1,5 +1,6 @@
 import { Oswald, Teko, Vazirmatn } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
+import GoogleAnalytics, { GoogleTagManagerNoScript } from '../components/GoogleAnalytics';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import OffcanvasMenu from '../components/OffcanvasMenu';
@@ -134,6 +135,7 @@ export default function RootLayout({ children }) {
 		// data-scroll-behavior lets Next.js switch smooth scrolling off while it changes pages.
 		<html lang="en-IN" data-scroll-behavior="smooth" className={`scroll-smooth ${teko.variable} ${oswald.variable} ${vazirmatn.variable}`}>
 			<body className="bg-[#01010F] text-[#E7E7E7] text-[18px] leading-[1.5] font-vazirmatn">
+				<GoogleTagManagerNoScript />
 				<a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-[10px] focus:left-[10px] focus:z-[100] focus:bg-[#971A1E] focus:text-white focus:px-[16px] focus:py-[8px]">
 					Skip to content
 				</a>
@@ -146,6 +148,7 @@ export default function RootLayout({ children }) {
 				<ScrollToTop />
 				<TemplateScripts />
 				<Analytics />
+				<GoogleAnalytics />
 				<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(localBusiness)} />
 				<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(website)} />
 			</body>

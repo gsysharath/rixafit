@@ -1,17 +1,31 @@
 /** @type {import('next').NextConfig} */
 
 const isProd = process.env.NODE_ENV === 'production';
+// Google Tag Manager + Google Analytics 4 (components/GoogleAnalytics.jsx), including Tag
+// Manager's Preview mode. Anything else added inside Tag Manager (e.g. Meta Pixel, Google Ads)
+// must be allowed here too, or the browser will block it.
+// GA4 also sends data to google.com / google.co.in / doubleclick.net (Google signals), per
+// Google's CSP guide for the Google tag.
+const GA_BEACONS = ' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com https://*.google.co.in';
+const google = {
+	script: ' https://*.googletagmanager.com https://tagmanager.google.com',
+	connect: GA_BEACONS,
+	img: `${GA_BEACONS} https://ssl.gstatic.com https://www.gstatic.com`,
+	style: ' https://tagmanager.google.com https://fonts.googleapis.com',
+	font: ' https://fonts.gstatic.com',
+	frame: ' https://www.googletagmanager.com',
+};
 
 const csp = [
 	"default-src 'self'",
 	// Next.js injects small inline bootstrap scripts; dev mode also needs eval for fast refresh
 	// and loads Vercel Analytics' debug script (production serves it from /_vercel/insights).
-	`script-src 'self' 'unsafe-inline'${isProd ? '' : " 'unsafe-eval' https://va.vercel-scripts.com"}`,
-	"style-src 'self' 'unsafe-inline'",
-	"img-src 'self' data: blob:",
-	"font-src 'self' data:",
-	"connect-src 'self'",
-	'frame-src https://www.google.com https://maps.google.com',
+	`script-src 'self' 'unsafe-inline'${google.script}${isProd ? '' : " 'unsafe-eval' https://va.vercel-scripts.com"}`,
+	`style-src 'self' 'unsafe-inline'${google.style}`,
+	`img-src 'self' data: blob:${google.img}`,
+	`font-src 'self' data:${google.font}`,
+	`connect-src 'self'${google.connect}`,
+	`frame-src https://www.google.com https://maps.google.com${google.frame}`,
 	"frame-ancestors 'self'",
 	"base-uri 'self'",
 	"form-action 'self'",

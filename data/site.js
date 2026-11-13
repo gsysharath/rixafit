@@ -25,6 +25,10 @@ export const site = {
 	whatsapp: '918019980205',
 	whatsappDisplay: '+91 80199 80205',
 	instagram: 'https://www.instagram.com/rixafit_mahabubnagar/',
+	// Google Tag Manager container (manage tags at tagmanager.google.com). Loads only on the live
+	// domain, so local testing and Vercel preview links don't send visits to analytics.
+	gtmId: 'GTM-5WN3TZ8T',
+	liveHosts: ['rixafit.com', 'www.rixafit.com'],
 	// Every "Join Now" button opens this online enquiry form.
 	joinUrl: 'https://www.yourdigitallift.com/external-tab-customer-enquiry-form/NDQ3MQ--/',
 	// Member app. "Download App" buttons ask the visitor which phone they use, then open the matching store.
