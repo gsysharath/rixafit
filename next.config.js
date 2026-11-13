@@ -61,6 +61,8 @@ const legacyRedirects = [
 	['/classes/muscular', '/services/weight-gain-muscle-development'],
 	['/classes/cardio', '/services/group-fitness-cardio'],
 	['/classes/:slug', '/services'],
+	// Service photos moved into /images/services/activity/; pages saved before that still work.
+	['/images/services/:file((?!activity)[a-z-]+\\.webp)', '/images/services/activity/:file'],
 	['/services/strength-training', '/services/strength-conditioning'],
 	['/services/calisthenics-challenge', '/services'],
 ];
