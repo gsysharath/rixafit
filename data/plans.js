@@ -3,8 +3,6 @@
 
 export const plans = [
 	{ slug: 'fit-30', name: 'FIT 30', category: 'Individual', months: 1, price: 3500 },
-	// NOTE: the poster lists FIT 60 with the same duration and price as FIT 30 - confirm with the gym.
-	{ slug: 'fit-60', name: 'FIT 60', category: 'Individual', months: 1, price: 3500 },
 	{ slug: 'fit-90', name: 'FIT 90', category: 'Individual', months: 3, price: 6999 },
 	{ slug: 'fit-180', name: 'FIT 180', category: 'Individual', months: 6, price: 10999 },
 	{ slug: 'fit-365', name: 'FIT 365', category: 'Individual', months: 12, price: 15999 },

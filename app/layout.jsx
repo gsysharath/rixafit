@@ -6,6 +6,7 @@ import OffcanvasMenu from '../components/OffcanvasMenu';
 import AppDownloadDialog from '../components/AppDownloadDialog';
 import WhatsAppButton from '../components/WhatsAppButton';
 import TemplateScripts from '../components/TemplateScripts';
+import ScrollToTop from '../components/ScrollToTop';
 import { site } from '../data/site';
 import { priceRange } from '../data/plans';
 import { DEFAULT_OG_IMAGE, LOCAL_KEYWORDS, jsonLdScript } from '../lib/seo';
@@ -130,7 +131,8 @@ const website = {
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en-IN" className={`scroll-smooth ${teko.variable} ${oswald.variable} ${vazirmatn.variable}`}>
+		// data-scroll-behavior lets Next.js switch smooth scrolling off while it changes pages.
+		<html lang="en-IN" data-scroll-behavior="smooth" className={`scroll-smooth ${teko.variable} ${oswald.variable} ${vazirmatn.variable}`}>
 			<body className="bg-[#01010F] text-[#E7E7E7] text-[18px] leading-[1.5] font-vazirmatn">
 				<a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-[10px] focus:left-[10px] focus:z-[100] focus:bg-[#971A1E] focus:text-white focus:px-[16px] focus:py-[8px]">
 					Skip to content
@@ -141,6 +143,7 @@ export default function RootLayout({ children }) {
 				<WhatsAppButton />
 				<OffcanvasMenu />
 				<AppDownloadDialog />
+				<ScrollToTop />
 				<TemplateScripts />
 				<Analytics />
 				<script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(localBusiness)} />

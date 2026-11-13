@@ -2,7 +2,7 @@ import { scheduleDays, scheduleNote, scheduleSlots, scheduleSummary } from '../d
 import Reveal from './Reveal';
 
 // Gym timings from data/schedule.js: a day-by-day grid on desktop, grouped cards on
-// smaller screens, followed by the "timings may vary" note. Used on / and /schedule.
+// smaller screens, followed by the "timings may vary" note. Used on the home page.
 export default function WeeklyTimetable() {
 	return (
 		<>

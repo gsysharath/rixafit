@@ -4,9 +4,12 @@ import { useState } from 'react';
 import AnimatedField, { FormStatus, Honeypot } from './AnimatedField';
 import { formValues, useEnquiry } from '../../lib/useEnquiry';
 import { useQueryParam } from '../../lib/useClientValue';
-import { site } from '../../data/site';
+import { services } from '../../data/services';
+import { site, whatsappLink } from '../../data/site';
 
-const ROW = 'h-[100px] flex items-center gap-[10px]';
+const ROW = 'h-[90px] flex items-center gap-[10px]';
+const INTEREST_OPTIONS = ['Membership plans', ...services.map((s) => s.name), 'Something else'];
+const CALL_TIME_OPTIONS = ['Morning (5 - 11 AM)', 'Evening (5 - 10 PM)', 'Anytime'];
 
 export default function ContactForm() {
 	const { status, message, fieldErrors, submit, submitting } = useEnquiry('contact');
@@ -20,12 +23,15 @@ export default function ContactForm() {
 	}
 
 	const defaultMessage = plan ? `Hi, I'm interested in the ${plan}. Please share the details.` : '';
+	// Membership "Choose plan" buttons send e.g. "FIT 30 membership - 1 Month, ₹3,500".
+	const defaultInterest = /membership/i.test(plan) ? 'Membership plans' : '';
 
 	return (
 		<form id="enquiry" onSubmit={onSubmit} noValidate={false} className="relative scroll-mt-[120px]">
 			<Honeypot />
+			{/* The red timing boxes beside the form are desktop-only; phones see timings in the cards above. */}
 			<div className="xl:grid grid-cols-3">
-				<div className="relative flex items-center">
+				<div className="relative hidden xl:flex items-center">
 					<div className="hidden xl:block absolute top-0 right-0 bottom-0 w-1/2 border-[1px] border-[#E22C32] rounded-bl-full rounded-tl-full"></div>
 					<div className="hidden xl:block absolute top-0 right-0 bottom-0 m-auto h-3/4 w-1/2 border-[1px] border-[#E22C32] rounded-bl-full rounded-tl-full"></div>
 					<div className="hidden xl:block absolute top-0 right-0 bottom-0 m-auto h-2/4 w-1/2 border-[1px] border-[#E22C32] rounded-bl-full rounded-tl-full"></div>
@@ -49,15 +55,28 @@ export default function ContactForm() {
 							</div>
 						)}
 					</div>
+					<div className="text-center text-[14px]">Only your name and phone number are required.</div>
 					<div key={`${formKey}-${plan}`}>
-						<AnimatedField rowClassName={ROW} label="Write your name" name="name" icon="fa fa-user" required autoComplete="name" maxLength={80} error={fieldErrors.name} />
-						<AnimatedField rowClassName={ROW} label="Enter your email" name="email" type="email" icon="fa fa-envelope" required autoComplete="email" maxLength={254} error={fieldErrors.email} />
-						<AnimatedField rowClassName={ROW} label="Enter your phone" name="phone" type="tel" icon="fa fa-phone" required autoComplete="tel" inputMode="tel" maxLength={20} error={fieldErrors.phone} />
-						<AnimatedField rowClassName={ROW} label="Write your message" name="message" as="textarea" icon="fa fa-pen" required maxLength={2000} defaultValue={defaultMessage} error={fieldErrors.message} />
+						<AnimatedField rowClassName={ROW} label="Your name*" name="name" icon="fa fa-user" required autoComplete="name" maxLength={80} error={fieldErrors.name} />
+						<AnimatedField rowClassName={ROW} label="Phone number*" name="phone" type="tel" icon="fa fa-phone" required autoComplete="tel" inputMode="tel" maxLength={20} error={fieldErrors.phone} />
+						<AnimatedField rowClassName={ROW} label="Email (optional)" name="email" type="email" icon="fa fa-envelope" autoComplete="email" maxLength={254} error={fieldErrors.email} />
+						<AnimatedField rowClassName={ROW} label="Interested in" name="interest" as="select" options={INTEREST_OPTIONS} placeholderOption="Choose one" icon="fa fa-dumbbell" defaultValue={defaultInterest} error={fieldErrors.interest} />
+						<AnimatedField rowClassName={ROW} label="Best time to call" name="callTime" as="select" options={CALL_TIME_OPTIONS} placeholderOption="Choose one" icon="fa fa-clock" error={fieldErrors.callTime} />
+						<AnimatedField rowClassName={ROW} label="Message (optional)" name="message" as="textarea" icon="fa fa-pen" maxLength={2000} defaultValue={defaultMessage} error={fieldErrors.message} />
 					</div>
 					<FormStatus status={status} message={message} className="mt-[20px]" />
+					{status === 'success' && (
+						<a
+							className="mt-[15px] inline-flex items-center gap-[8px] font-teko text-[20px] uppercase bg-[#25D366] text-white px-[20px] py-[6px] hover:opacity-90"
+							href={whatsappLink(`Hi ${site.name}, I just sent an enquiry on your website.`)}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i className="fa-brands fa-whatsapp text-[18px]" aria-hidden="true"></i>Faster reply on WhatsApp
+						</a>
+					)}
 				</div>
-				<div className="relative flex items-center mt-[30px] xl:mt-0">
+				<div className="relative hidden xl:flex items-center">
 					<div className="hidden xl:block absolute top-0 left-0 bottom-0 w-1/2 border-[1px] border-[#E22C32] rounded-br-full rounded-tr-full"></div>
 					<div className="hidden xl:block absolute top-0 left-0 bottom-0 m-auto h-3/4 w-1/2 border-[1px] border-[#E22C32] rounded-br-full rounded-tr-full"></div>
 					<div className="hidden xl:block absolute top-0 left-0 bottom-0 m-auto h-2/4 w-1/2 border-[1px] border-[#E22C32] rounded-br-full rounded-tr-full"></div>

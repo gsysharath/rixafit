@@ -118,7 +118,7 @@ export default async function ServiceDetailsPage({ params }) {
 								<div className="text-[14px] uppercase opacity-80">{site.hours.sunday.label.replace(':', '')}</div>
 								<div className="font-teko font-medium text-[24px]">{site.hours.sunday.value}</div>
 							</div>
-							<Link className="inline-block pt-[15px] underline underline-offset-4 hover:no-underline" href="/schedule">
+							<Link className="inline-block pt-[15px] underline underline-offset-4 hover:no-underline" href="/#schedule">
 								Full schedule<i className="fa-solid fa-arrow-right ml-[8px] text-[13px]"></i>
 							</Link>
 						</div>

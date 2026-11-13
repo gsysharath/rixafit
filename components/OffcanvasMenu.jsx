@@ -1,13 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { navItems } from './navData';
+import { usePathname } from 'next/navigation';
+import { isActivePath, navItems } from './navData';
 import { site } from '../data/site';
 
-function ArrowRowContent({ label }) {
+function ArrowRowContent({ label, active = false }) {
 	return (
 		<>
-			<div className="">{label}</div>
+			<div className={active ? 'text-[#E22C32] font-semibold' : ''}>
+				{active && <span className="inline-block w-[8px] h-[8px] mr-[8px] rounded-full bg-[#E22C32] align-middle" aria-hidden="true"></span>}
+				{label}
+			</div>
 			<div className="flex-1 flex items-center gap-[5px]">
 				<div className="flex-1 border-t-[10px] border-[#D4D4D4] border-opacity-50"></div>
 				<div className="flex-1 border-t-[7px] border-[#D4D4D4] border-opacity-50"></div>
@@ -24,13 +28,13 @@ function ArrowRowContent({ label }) {
 
 // Page links use Next.js <Link> so they open instantly; '#...' links toggle the menu panels
 // (handled by TemplateScripts) and external links open in a new tab.
-function ArrowRow({ label, dataCToggle, href = '#m', external = false }) {
+function ArrowRow({ label, dataCToggle, href = '#m', external = false, active = false }) {
 	const isPage = !external && dataCToggle === undefined && href.startsWith('/');
 	return (
 		<div className="">
 			{isPage ? (
-				<Link className="flex items-center gap-[10px]" href={href}>
-					<ArrowRowContent label={label} />
+				<Link className="flex items-center gap-[10px]" href={href} aria-current={active ? 'page' : undefined}>
+					<ArrowRowContent label={label} active={active} />
 				</Link>
 			) : (
 				<a
@@ -39,7 +43,7 @@ function ArrowRow({ label, dataCToggle, href = '#m', external = false }) {
 					href={href}
 					{...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
 				>
-					<ArrowRowContent label={label} />
+					<ArrowRowContent label={label} active={active} />
 				</a>
 			)}
 		</div>
@@ -58,6 +62,7 @@ const submenuVisibilityClass = {
 const submenus = navItems.filter((item) => item.links);
 
 export default function OffcanvasMenu() {
+	const pathname = usePathname() || '/';
 	return (
 		<div id="offcanvas" className="group">
 			<div className="fixed z-[49] top-0 right-0 bottom-0 left-0 group-[:not([data-t='a'])]:invisible">
@@ -72,14 +77,14 @@ export default function OffcanvasMenu() {
 						<div id="m" className="relative group/m">
 							<div className="">
 								<div className="grid grid-cols-1 gap-[20px] w-[300px]">
-									<ArrowRow label="HOME" href="/" dataCToggle={undefined} />
+									<ArrowRow label="HOME" href="/" dataCToggle={undefined} active={isActivePath(pathname, '/')} />
 									{navItems.map((item) => (
 										<div key={item.key}>
 											<Divider />
 											{item.href ? (
-												<ArrowRow label={item.mobileLabel} href={item.href} dataCToggle={undefined} />
+												<ArrowRow label={item.mobileLabel} href={item.href} dataCToggle={undefined} active={isActivePath(pathname, item.href)} />
 											) : (
-												<ArrowRow label={item.mobileLabel} dataCToggle={`o${item.key}`} />
+												<ArrowRow label={item.mobileLabel} dataCToggle={`o${item.key}`} active={item.links.some((l) => isActivePath(pathname, l.href))} />
 											)}
 										</div>
 									))}
@@ -95,6 +100,10 @@ export default function OffcanvasMenu() {
 											</button>
 										</div>
 									</div>
+									<div>
+										<Divider />
+										<ArrowRow label="CALL NOW" href={`tel:${site.phone}`} />
+									</div>
 								</div>
 							</div>
 							{submenus.map((g) => (
@@ -106,7 +115,7 @@ export default function OffcanvasMenu() {
 											{g.links.map((link) => (
 												<div key={link.href}>
 													<Divider />
-													<ArrowRow label={link.mobileLabel} href={link.href} dataCToggle={undefined} />
+													<ArrowRow label={link.mobileLabel} href={link.href} dataCToggle={undefined} active={isActivePath(pathname, link.href)} />
 												</div>
 											))}
 										</div>

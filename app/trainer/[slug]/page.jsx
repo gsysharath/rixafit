@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import MobileContactCta from '../../../components/MobileContactCta';
 import { pageMetadata } from '../../../lib/seo';
 import { notFound } from 'next/navigation';
 import { site, videoLink, whatsappLink } from '../../../data/site';
@@ -27,7 +28,6 @@ export default async function TrainerDetailsPage({ params }) {
 	const { slug } = await params;
 	const trainer = getTrainer(slug);
 	if (!trainer) notFound();
-	const siteHost = site.url.replace(/^https?:\/\//, '');
 
 	return (
 		<div className="bg-[#01010F] text-[#E7E7E7]">
@@ -123,8 +123,10 @@ export default async function TrainerDetailsPage({ params }) {
 							</div>
 							<div className="">
 								<div className="flex gap-[10px]">
-									<div className="w-[72px] text-[#E22C32]">Website:</div>
-									<Link className="hover:text-[#E22C32] break-all" href="/">{siteHost}</Link>
+									<div className="w-[72px] text-[#E22C32]">Book:</div>
+									<a className="hover:text-[#E22C32]" href={whatsappLink(`Hi, I'd like to book a session with ${trainer.name}.`)} target="_blank" rel="noopener noreferrer">
+										<i className="fa-brands fa-whatsapp mr-[6px]" aria-hidden="true"></i>WhatsApp {site.whatsappDisplay}
+									</a>
 								</div>
 							</div>
 							<div className="">
@@ -230,6 +232,8 @@ export default async function TrainerDetailsPage({ params }) {
 				</div>
 			</div>
 		</div>
+
+		<MobileContactCta />
 
 		{/* section */}
 		<div className="hidden xl:block pb-[150px]">

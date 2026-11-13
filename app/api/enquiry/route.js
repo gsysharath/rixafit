@@ -6,11 +6,16 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const SUCCESS_MESSAGES = {
-	contact: 'Thank you! Your message has been sent. A confirmation email is on its way to your inbox.',
-	booking: 'Your class booking request is received! Check your inbox for the confirmation - we will contact you shortly.',
+	contact: 'Thank you! Your message has been sent. Our team will get back to you within 24 hours.',
 	newsletter: 'You are subscribed! A welcome email is on its way.',
 	comment: 'Thanks! Your comment has been received and will appear after review.',
 };
+
+// The contact form's email is optional, so only mention the confirmation email when one was given.
+function successMessage(type, data) {
+	const base = SUCCESS_MESSAGES[type] || 'Thank you!';
+	return type === 'contact' && data.email ? `${base} A confirmation email is on its way to your inbox.` : base;
+}
 
 // Best-effort, per-instance rate limit: 5 submissions per IP every 10 minutes.
 const WINDOW_MS = 10 * 60 * 1000;
@@ -87,7 +92,7 @@ export async function POST(request) {
 	if (!isMailConfigured()) {
 		if (process.env.NODE_ENV !== 'production') {
 			console.info(`[enquiry] SMTP not configured - ${type} submission (dev only, not emailed):`, result.data);
-			return json({ ok: true, message: SUCCESS_MESSAGES[type], dev: true });
+			return json({ ok: true, message: successMessage(type, result.data), dev: true });
 		}
 		console.error('[enquiry] SMTP_USER / SMTP_PASS are not set; cannot deliver form submissions.');
 		return json({ ok: false, error: 'Our form service is temporarily unavailable. Please call or WhatsApp us instead.' }, 503);
@@ -100,7 +105,7 @@ export async function POST(request) {
 		return json({ ok: false, error: 'We could not send your message right now. Please try again or WhatsApp us.' }, 502);
 	}
 
-	return json({ ok: true, message: SUCCESS_MESSAGES[type] });
+	return json({ ok: true, message: successMessage(type, result.data) });
 }
 
 export function GET() {

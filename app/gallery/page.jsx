@@ -1,4 +1,5 @@
 import { pageMetadata } from '../../lib/seo';
+import MobileContactCta from '../../components/MobileContactCta';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
 import GalleryLightbox from '../../components/GalleryLightbox';
@@ -362,6 +363,8 @@ export default function GalleryPage() {
 				</div>
 			</div>
 		</div>
+
+		<MobileContactCta />
 
 		{/* section */}
 		<div className="hidden xl:block pb-[150px]">

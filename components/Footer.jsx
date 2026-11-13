@@ -171,7 +171,11 @@ export default function Footer() {
 							<span className="">TOP</span>
 						</button>
 					</div>
-					<div className="hidden md:block" suppressHydrationWarning>&copy;{year} All Rights Reserved - {site.name}</div>
+					<div className="flex flex-col md:flex-row items-center gap-[4px] md:gap-[12px] text-center">
+						<span className="hidden md:inline" suppressHydrationWarning>&copy;{year} All Rights Reserved - {site.name}</span>
+						<span className="hidden md:inline text-[#E22C32]" aria-hidden="true">|</span>
+						<Link className="hover:text-[#E22C32] underline md:no-underline underline-offset-4" href="/terms">Terms &amp; Conditions</Link>
+					</div>
 					<a className="flex items-center gap-[10px] hover:text-[#E22C32]" href={whatsappLink(`Hi ${site.name}, I'd like to know more about your memberships.`)} target="_blank" rel="noopener noreferrer">
 						<div className="">WhatsApp Us</div>
 						<div className="">

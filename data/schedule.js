@@ -1,4 +1,4 @@
-// Gym timings and group activities shown on /schedule.
+// Gym timings shown in the timetable on the home page (#schedule) and notes used on service pages.
 // The opening hours in data/site.js (footer, contact page, search engines) must match these.
 
 const MORNING = '5:00 AM – 11:00 AM';
@@ -35,8 +35,6 @@ export const scheduleSummary = [
 		rows: [{ label: 'Morning', time: MORNING }],
 	},
 ];
-
-export const groupActivities = ['Group Cardio', 'Zumba & Dance Fitness', 'Fitness Boxing', 'Functional & Circuit Training'];
 
 export const scheduleNote = 'Special class timings may vary. Please contact our reception for the latest schedule.';
 

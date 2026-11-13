@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ContactQuickActions from '../components/ContactQuickActions';
 import HomeBmiForm from '../components/forms/HomeBmiForm';
 import NewsletterForm from '../components/forms/NewsletterForm';
 import PlanCard from '../components/cards/PlanCard';
@@ -17,10 +18,10 @@ export const metadata = pageMetadata({
 	absoluteTitle: true,
 	description: `RIXA FIT is a premium fitness studio in Padmavathi Colony, Mahabubnagar - personal training, weight loss, strength, group cardio, Zumba and fitness boxing with expert trainers. Memberships from ${formatPrice(Math.min(...plans.map((p) => p.price)))}.`,
 	path: '/',
-	keywords: ['gym Mahabubnagar', 'fitness gym Telangana', 'personal training Mahabubnagar'],
+	keywords: ['gym timings Mahabubnagar', 'gym Mahabubnagar', 'fitness gym Telangana', 'personal training Mahabubnagar'],
 });
 
-const homePlans = ['fit-30', 'fit-365'].map((slug) => plans.find((p) => p.slug === slug));
+const homePlans = ['fit-30', 'fit-90', 'fit-365'].map((slug) => plans.find((p) => p.slug === slug));
 
 export default function Home() {
 	return (
@@ -280,13 +281,11 @@ export default function Home() {
 					<div className="">
 						<PlanCard plan={homePlans[0]} />
 					</div>
-					<div className="hidden xl:block">
-						<Reveal>
-							<img className="w-full aspect-[4/5] object-cover" src="/gym/gym-floor-cardio-zone.webp" alt="Cardio and strength area at RIXA FIT" loading="lazy" />
-						</Reveal>
-					</div>
 					<div className="">
-						<PlanCard plan={homePlans[1]} featured />
+						<PlanCard plan={homePlans[1]} />
+					</div>
+					<div className="md:col-span-2 xl:col-span-1">
+						<PlanCard plan={homePlans[2]} featured />
 					</div>
 				</div>
 				<div className="pt-[50px] flex justify-center">
@@ -310,18 +309,15 @@ export default function Home() {
 			</div>
 		</div>
 
-		{/* section */}
-		<div className="pt-[150px]">
+		{/* section: gym schedule - "Full schedule" links across the site point here (/#schedule) */}
+		<div id="schedule" className="pt-[150px] scroll-mt-[-30px]">
 			<div className="max-w-[1320px] mx-auto px-[15px]">
 				<div className="flex flex-wrap justify-between items-end gap-[30px]">
-					<div className="font-teko flex items-center gap-[15px] uppercase">
-						<div className="font-semibold text-[48px] md:text-[60px] leading-[1]">Gym</div>
-						<div className="font-medium text-[12px] text-[#E22C32] relative top-[-5px] border-r-[2px] border-l-[2px] border-[#E22C32] px-[5px] [writing-mode:tb]">Timings</div>
-						<div className="font-semibold text-[48px] md:text-[60px] leading-[1]">Schedule</div>
-					</div>
-					<Link className="font-teko text-[20px] uppercase border-[1px] border-[#E22C32] px-[25px] py-[8px] hover:bg-[#971A1E] transition-colors duration-[.3s]" href="/schedule">
-						Full schedule<i className="fa-solid fa-arrow-right ml-[10px] text-[14px]"></i>
-					</Link>
+					<h2 className="font-teko flex items-center gap-[15px] uppercase">
+						<span className="font-semibold text-[48px] md:text-[60px] leading-[1]">Gym</span>
+						<span className="font-medium text-[12px] text-[#E22C32] relative top-[-5px] border-r-[2px] border-l-[2px] border-[#E22C32] px-[5px] [writing-mode:tb]" aria-hidden="true">Timings</span>
+						<span className="font-semibold text-[48px] md:text-[60px] leading-[1]">Schedule</span>
+					</h2>
 				</div>
 				<div className="pt-[50px]"></div>
 				<WeeklyTimetable />
@@ -565,6 +561,11 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
+		</div>
+
+		{/* section: visit us */}
+		<div className="pt-[150px]">
+			<ContactQuickActions heading="Visit Us" label="Contact" />
 		</div>
 
 		{/* section */}

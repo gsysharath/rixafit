@@ -35,13 +35,15 @@ const legacyRedirects = [
 	['/blog-details', '/blog/expert-tips-for-maximizing-your-fitness'],
 	['/blog-details.html', '/blog/expert-tips-for-maximizing-your-fitness'],
 	['/bmi.html', '/bmi'],
-	['/classes.html', '/classes'],
-	['/class-details', '/classes/kickboxing'],
-	['/class-details.html', '/classes/kickboxing'],
+	['/classes.html', '/services'],
+	['/class-details', '/services/fitness-boxing'],
+	['/class-details.html', '/services/fitness-boxing'],
 	['/contact.html', '/contact'],
 	['/gallery.html', '/gallery'],
 	['/pricing.html', '/pricing'],
-	['/schedule.html', '/schedule'],
+	// The Schedule page was removed; the timetable lives on the home page.
+	['/schedule.html', '/#schedule'],
+	['/schedule', '/#schedule'],
 	['/services.html', '/services'],
 	['/service-details', '/services/personal-training'],
 	['/service-details.html', '/services/personal-training'],
@@ -50,6 +52,15 @@ const legacyRedirects = [
 	['/trainer-details.html', '/trainer'],
 	// Template services replaced by RIXA FIT's real services (data/services.js).
 	['/services/fitness-classes', '/services/group-fitness-cardio'],
+	// The template's Classes section was removed; its pages point to the closest real service.
+	['/classes', '/services'],
+	['/classes/kickboxing', '/services/fitness-boxing'],
+	['/classes/body-pump', '/services/strength-conditioning'],
+	['/classes/hiit-havoc', '/services/functional-circuit-training'],
+	['/classes/muscle', '/services/weight-gain-muscle-development'],
+	['/classes/muscular', '/services/weight-gain-muscle-development'],
+	['/classes/cardio', '/services/group-fitness-cardio'],
+	['/classes/:slug', '/services'],
 	['/services/strength-training', '/services/strength-conditioning'],
 	['/services/calisthenics-challenge', '/services'],
 ];
@@ -64,8 +75,9 @@ const nextConfig = {
 		return [
 			{ source: '/:path*', headers: securityHeaders },
 			{
-				source: '/:dir(images|gym)/:path*',
-				headers: [{ key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' }],
+				// One day, so a photo replaced under the same file name reaches every visitor within a day.
+				source: '/:dir(images|gym|videos)/:path*',
+				headers: [{ key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' }],
 			},
 		];
 	},

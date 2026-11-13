@@ -150,6 +150,9 @@ export default function TemplateScripts() {
 					odometerCleanups = initOdometer(libs);
 					tweens = initScrollReveal(libs);
 					libs.ScrollTrigger.refresh();
+					// Sliders change the page height when they start; ScrollToTop re-applies a
+					// Back-button scroll position once this has happened.
+					window.dispatchEvent(new Event('rixa:layout-ready'));
 				})
 				.catch((error) => console.error('Failed to load page animations', error));
 		});

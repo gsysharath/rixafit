@@ -1,14 +1,16 @@
 import Link from 'next/link';
+import MobileContactCta from '../../components/MobileContactCta';
 import { pageMetadata } from '../../lib/seo';
 import NewsletterForm from '../../components/forms/NewsletterForm';
 import PageBanner from '../../components/PageBanner';
 import PlanCard from '../../components/cards/PlanCard';
+import { ChoosePlanHelpCard, PersonalTrainingCard } from '../../components/cards/PlanHelpCards';
 import { formatPrice, individualPlans, isBestValue, membershipNotes, plans, sharedPlans } from '../../data/plans';
 import { site, whatsappLink } from '../../data/site';
 
 export const metadata = pageMetadata({
 	title: 'Gym Membership Fees in Mahabubnagar',
-	description: `RIXA FIT membership plans: ${plans.filter((p) => p.category === 'Individual' && p.slug !== 'fit-60').map((p) => `${p.name} ${formatPrice(p.price)}`).join(', ')}, plus couple and group plans. Join today.`,
+	description: `RIXA FIT membership plans: ${plans.filter((p) => p.category === 'Individual').map((p) => `${p.name} ${formatPrice(p.price)}`).join(', ')}, plus couple and group plans. Join today.`,
 	path: '/pricing',
 	keywords: ['gym fees Mahabubnagar', 'gym membership price', 'gym monthly fee', 'couple gym membership'],
 });
@@ -36,12 +38,19 @@ function SectionHeading({ title, eyebrow }) {
 	);
 }
 
-function PlanGrid({ items }) {
+// `extras` are non-plan cards (personal training, help choosing) that fill the last row.
+function PlanGrid({ items, extras = [] }) {
+	const cell = 'w-full md:w-[calc(50%-15px)] xl:w-[calc(33.333%-20px)]';
 	return (
 		<div className="pt-[50px] flex flex-wrap justify-center items-center gap-[30px] text-center">
 			{items.map((p) => (
-				<div key={p.slug} className="w-full md:w-[calc(50%-15px)] xl:w-[calc(33.333%-20px)]">
+				<div key={p.slug} className={cell}>
 					<PlanCard plan={p} featured={isBestValue(p)} />
+				</div>
+			))}
+			{extras.map((card, i) => (
+				<div key={i} className={`${cell} self-stretch`}>
+					{card}
 				</div>
 			))}
 		</div>
@@ -56,7 +65,7 @@ export default function PricingPage() {
 		<div className="pt-[150px]">
 			<div className="max-w-[1320px] mx-auto px-[15px]">
 				<SectionHeading title="Individual Plans" eyebrow="FIT" />
-				<PlanGrid items={individualPlans} />
+				<PlanGrid items={individualPlans} extras={[<PersonalTrainingCard key="pt" />, <ChoosePlanHelpCard key="help" />]} />
 				<div className="pt-[100px]"></div>
 				<SectionHeading title="Couple & Group" eyebrow="Together" />
 				<PlanGrid items={sharedPlans} />
@@ -183,6 +192,8 @@ export default function PricingPage() {
 				</div>
 			</div>
 		</div>
+
+		<MobileContactCta />
 
 		{/* section */}
 		<div className="hidden xl:block pb-[150px]">

@@ -23,6 +23,7 @@ export const site = {
 	altPhone: '+919052507670',
 	altPhoneDisplay: '+91 90525 07670',
 	whatsapp: '918019980205',
+	whatsappDisplay: '+91 80199 80205',
 	instagram: 'https://www.instagram.com/rixafit_mahabubnagar/',
 	// Every "Join Now" button opens this online enquiry form.
 	joinUrl: 'https://www.yourdigitallift.com/external-tab-customer-enquiry-form/NDQ3MQ--/',
@@ -47,7 +48,7 @@ export const site = {
 		short: 'Mon-Sat 5-11 AM & 5-10 PM, Sun 5-11 AM',
 	},
 	// Machine-readable opening hours for search engines (schema.org format).
-	// The full timetable on /schedule lives in data/schedule.js - keep the two in sync.
+	// The full timetable (home page, #schedule) lives in data/schedule.js - keep the two in sync.
 	openingHours: [
 		{ days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '05:00', closes: '11:00' },
 		{ days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '17:00', closes: '22:00' },
@@ -57,6 +58,8 @@ export const site = {
 	// The RIXA FIT Google Business listing (address links and the "Read our Google reviews" button).
 	mapUrl: 'https://www.google.com/maps/place/RIXA+FIT/@16.7530687,78.016798,17z/data=!3m1!4b1!4m6!3m5!1s0x3bca290078267b61:0xd49659a221c3c919!8m2!3d16.7530687!4d78.016798!16s%2Fg%2F11w9b8gqnj',
 	geo: { latitude: 16.7530687, longitude: 78.016798 },
+	// Opens turn-by-turn directions to the gym in Google Maps (the app on phones).
+	directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=RIXA+FIT%2C+Padmavathi+Colony%2C+Mahabubnagar',
 	// Optional: paste a YouTube/Instagram video URL to make the play buttons open it.
 	// When empty, play buttons open the Instagram profile instead.
 	videoUrl: '',

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import MobileContactCta from '../../components/MobileContactCta';
 import { pageMetadata } from '../../lib/seo';
 import { trainers } from '../../data/trainers';
 import NewsletterForm from '../../components/forms/NewsletterForm';
@@ -90,6 +91,8 @@ export default function TrainerPage() {
 				</div>
 			</div>
 		</div>
+
+		<MobileContactCta />
 
 		{/* section */}
 		<div className="hidden xl:block pb-[150px]">
